@@ -34,7 +34,7 @@
   "dependencies": {
     "chalk": "^5.3.0",
     "dequal": "^2.0.3",
-    "discord.js": "13.17.1",
+    "discord.js": "^13.17.1",
     "humanize-duration": "^3.32.1",
     "jsonrepair": "^3.11.2",
     "lodash-es": "^4.17.21",
