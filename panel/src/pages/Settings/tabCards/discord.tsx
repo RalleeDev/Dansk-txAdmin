@@ -78,10 +78,10 @@ export default function ConfigCardDiscord({ cardCtx, pageCtx }: SettingsCardProp
 
         if (localConfigs.discordBot?.enabled) {
             if (!localConfigs.discordBot?.token) {
-                return txToast.error('You must provide a Discord Bot Token to enable the bot.');
+                return txToast.error('Du skal angive et discord bot token for at aktivere botten.');
             }
             if (!localConfigs.discordBot?.guild) {
-                return txToast.error('You must provide a Server ID to enable the bot.');
+                return txToast.error('Du skal specificere en discord server for at aktivere botten.');
             }
             if (!localConfigs.discordBot?.embedJson || !localConfigs.discordBot?.embedConfigJson) {
                 return txToast.error('You must provide both the Embed JSON and Config JSON to enable the bot.');
@@ -99,15 +99,15 @@ export default function ConfigCardDiscord({ cardCtx, pageCtx }: SettingsCardProp
             <SettingItem label="Discord Bot">
                 <SwitchText
                     id={cfg.botEnabled.eid}
-                    checkedLabel="Enabled"
-                    uncheckedLabel="Disabled"
+                    checkedLabel="Aktiveret"
+                    uncheckedLabel="Deaktiveret"
                     variant="checkedGreen"
                     checked={states.botEnabled}
                     onCheckedChange={cfg.botEnabled.state.set}
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    Enable Discord Integration.
+                    Aktiver discord integrationen.
                 </SettingItemDesc>
             </SettingItem>
             <SettingItem label="Token" htmlFor={cfg.botToken.eid} required={states.botEnabled}>
@@ -124,14 +124,14 @@ export default function ConfigCardDiscord({ cardCtx, pageCtx }: SettingsCardProp
                     required
                 />
                 <SettingItemDesc>
-                    To get a token and the bot to join your server, follow these two guides:
-                    <TxAnchor href="https://discordjs.guide/preparations/setting-up-a-bot-application.html">Setting up a bot application</TxAnchor> and <TxAnchor href="https://discordjs.guide/preparations/adding-your-bot-to-servers.html">Adding your bot to servers</TxAnchor> <br />
-                    <strong>Note:</strong> Do not reuse the same token for another bot. <br />
-                    <strong>Note:</strong> The bot requires the <strong>Server Members</strong> intent, which can be set at the
-                    <TxAnchor href="https://discord.com/developers/applications">Discord Developer Portal</TxAnchor>.
+                    For at få en token og få botten til at joine din server, følg disse 2 guides:
+                    <TxAnchor href="https://discordjs.guide/preparations/setting-up-a-bot-application.html">Opsæt en discord bot</TxAnchor> og <TxAnchor href="https://discordjs.guide/preparations/adding-your-bot-to-servers.html">Tilføj en bot til din server</TxAnchor> <br />
+                    <strong>Note:</strong> Lad vær med at genbruge en token fra en anden bot. <br />
+                    <strong>Note:</strong> Denne bot kræver <strong>Server Members</strong> intentionen, som kan blive sat her
+                    <TxAnchor href="https://discord.com/developers/applications">Discord Udvikler Portal</TxAnchor>.
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Guild/Server ID" htmlFor={cfg.discordGuild.eid} required={states.botEnabled}>
+            <SettingItem label="Discord Server ID" htmlFor={cfg.discordGuild.eid} required={states.botEnabled}>
                 <Input
                     id={cfg.discordGuild.eid}
                     ref={discordGuildRef}
@@ -141,12 +141,12 @@ export default function ConfigCardDiscord({ cardCtx, pageCtx }: SettingsCardProp
                     placeholder='000000000000000000'
                 />
                 <SettingItemDesc>
-                    The ID of the Discord Server (also known as Discord Guild). <br />
-                    To get the Server ID, go to Discord's settings and
-                    <TxAnchor href="https://support.discordapp.com/hc/article_attachments/115002742731/mceclip0.png"> enable developer mode</TxAnchor>, then right-click on the guild icon select "Copy ID".
+                    ID'et på din discord server (også kendt som et Guild ID). <br />
+                    For at få din Server ID, Gå til din indstillinger på discord og
+                    <TxAnchor href="https://support.discordapp.com/hc/article_attachments/115002742731/mceclip0.png"> Aktiver Udvikler tilstand</TxAnchor>, bagefter højreklik på din servers ikon og tryk "Copy ID".
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Warnings Channel ID" htmlFor={cfg.warningsChannel.eid} showOptional>
+            <SettingItem label="Advarsels Kanal ID" htmlFor={cfg.warningsChannel.eid} showOptional>
                 <Input
                     id={cfg.warningsChannel.eid}
                     ref={warningsChannelRef}
@@ -156,10 +156,10 @@ export default function ConfigCardDiscord({ cardCtx, pageCtx }: SettingsCardProp
                     placeholder='000000000000000000'
                 />
                 <SettingItemDesc>
-                    The ID of the channel to send Announcements (eg server restarts). <br />
-                    You can leave it blank to disable this feature. <br />
-                    To get the channel ID, go to Discord's settings and
-                    <TxAnchor href="https://support.discordapp.com/hc/article_attachments/115002742731/mceclip0.png"> enable developer mode</TxAnchor>, then right-click on the channel name and select "Copy ID".
+                    ID på kanalen som du gerne vil sende opdaterinbger ud i (f.eks. server genstart). <br />
+                    Du kan efterlade feltet tomt hvis du vil deaktivere denne funktion. <br />
+                    For at få kanalens ID, Gå til indstillinger på discord og
+                    <TxAnchor href="https://support.discordapp.com/hc/article_attachments/115002742731/mceclip0.png"> aktiver udvikler tilstand</TxAnchor>, så højreklik på kanalen du vil have opdateringer i og tryk på "Copy ID".
                 </SettingItemDesc>
             </SettingItem>
             {/* <SettingItem label="Status Embed">
@@ -205,7 +205,7 @@ export default function ConfigCardDiscord({ cardCtx, pageCtx }: SettingsCardProp
                             onClick={() => cfg.embedJson.state.discard()}
                             disabled={pageCtx.isReadOnly}
                         >
-                            <XIcon className="mr-2 h-4 w-4" /> Discard Changes
+                            <XIcon className="mr-2 h-4 w-4" /> Kassér ændringer
                         </Button>
                         <Button
                             className="grow border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground"
@@ -213,16 +213,16 @@ export default function ConfigCardDiscord({ cardCtx, pageCtx }: SettingsCardProp
                             onClick={() => cfg.embedJson.state.default()}
                             disabled={pageCtx.isReadOnly}
                         >
-                            <RotateCcwIcon className="mr-2 h-4 w-4" /> Reset to Default
+                            <RotateCcwIcon className="mr-2 h-4 w-4" /> Nulstil til standard
                         </Button>
                     </div>
                 </div>
                 <SettingItemDesc>
-                    The server status embed is customizable by editing the JSON above. <br />
-                    <strong>Note:</strong> Use the command <InlineCode>/status add</InlineCode> on a channel that the bot has the "Send Message" permission to setup the embed.
+                    Server status beskeden er mulig at tilpasse ved hjælpe af JSON ovenover. <br />
+                    <strong>Note:</strong> brug kommandoen <InlineCode>/status add</InlineCode> på en kanal som botten har "Send Beskeder" tilladelsen for at sette statussen op.
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Status Config JSON" htmlFor={cfg.embedConfigJson.eid} required={states.botEnabled}>
+            <SettingItem label="Status Konfiguration JSON" htmlFor={cfg.embedConfigJson.eid} required={states.botEnabled}>
                 <div className="flex flex-col gap-2">
                     <Textarea
                         id={cfg.embedConfigJson.eid}
@@ -241,7 +241,7 @@ export default function ConfigCardDiscord({ cardCtx, pageCtx }: SettingsCardProp
                             onClick={() => cfg.embedConfigJson.state.discard()}
                             disabled={pageCtx.isReadOnly}
                         >
-                            <XIcon className="mr-2 h-4 w-4" /> Discard Changes
+                            <XIcon className="mr-2 h-4 w-4" /> Kassér ændringer
                         </Button>
                         <Button
                             className="grow border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground"
@@ -249,13 +249,13 @@ export default function ConfigCardDiscord({ cardCtx, pageCtx }: SettingsCardProp
                             onClick={() => cfg.embedConfigJson.state.default()}
                             disabled={pageCtx.isReadOnly}
                         >
-                            <RotateCcwIcon className="mr-2 h-4 w-4" /> Reset to Default
+                            <RotateCcwIcon className="mr-2 h-4 w-4" /> Nulstil til standard
                         </Button>
                     </div>
                 </div>
                 <SettingItemDesc>
-                    The server status embed is customizable by editing the JSON above. <br />
-                    <strong>Note:</strong> Use the command <InlineCode>/status add</InlineCode> on a channel that the bot has the "Send Message" permission to setup the embed.
+                    Server Status Embed er mulig at tilpasse ved at ændre på JSON ovenover. <br />
+                    <strong>Note:</strong> Brug kommandoen <InlineCode>/status add</InlineCode> på en kanal hvor botten har "Send Beskeder" tilladelsen for at opsætte server status i den pågældende kanal.
                 </SettingItemDesc>
             </SettingItem>
         </SettingsCardShell>

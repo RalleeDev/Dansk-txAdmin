@@ -68,9 +68,9 @@ export default function ConfigCardBans({ cardCtx, pageCtx }: SettingsCardProps) 
             && localConfigs.banlist.rejectionMessage.length > 512
         ) {
             return txToast.error({
-                title: 'The Ban Rejection Message is too big.',
+                title: 'Besked for udelukkelse er for stor',
                 md: true,
-                msg: 'The message must be 512 characters or less.',
+                msg: 'Beskeden må ikke være mere end 512 karakter.',
             });
         }
         pageCtx.saveChanges(cardCtx, localConfigs);
@@ -84,39 +84,39 @@ export default function ConfigCardBans({ cardCtx, pageCtx }: SettingsCardProps) 
             advancedVisible={showAdvanced}
             advancedSetter={setShowAdvanced}
         >
-            <SettingItem label="Ban Checking">
+            <SettingItem label="Check for udelukkelse">
                 <SwitchText
                     id={cfg.checkingEnabled.eid}
-                    checkedLabel="Enabled"
-                    uncheckedLabel="Disabled"
+                    checkedLabel="Aktiveret"
+                    uncheckedLabel="Deaktiveret"
                     checked={states.checkingEnabled}
                     onCheckedChange={cfg.checkingEnabled.state.set}
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    Enable checking for ban status on player join. <br />
-                    <strong>Note:</strong> txAdmin bans will not work if this option is disabled.
+                    Slår kontrol af status på udelukkelse på når en spiller tilslutter sig serveren <br />
+                    <strong>Note:</strong> txAdmin udelukkelser vil ikke virke hvis dette er deaktiveret.
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Ban Templates">
+            <SettingItem label="Skabeloner for udelukkelse">
                 <Link asChild href="/settings/ban-templates">
                     <Button
                         size={'sm'}
                         variant="secondary"
                         disabled={pageCtx.isReadOnly}
                     >
-                        <PencilIcon className='size-4 mr-1.5 inline-block' /> Edit Ban Templates
+                        <PencilIcon className='size-4 mr-1.5 inline-block' /> Rediger Skabeloner for udelukkelse
                     </Button>
                 </Link>
                 <SettingItemDesc>
-                    Configure ban reasons and durations that will appear as dropdown options when banning a player. This is useful for common reasons that happen frequently, like violation of your server rules.
+                    Konfigure grunde og tid som ville vises når en spiller udelukkes. Det er brugbart for grunde der sker ofte, som brud på dine server regler.
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Ban Rejection Message" htmlFor={cfg.rejectionMessage.eid} showOptional>
+            <SettingItem label="Banlysning afvisning besked" htmlFor={cfg.rejectionMessage.eid} showOptional>
                 <AutosizeTextarea
                     id={cfg.rejectionMessage.eid}
                     ref={rejectionMessageRef}
-                    placeholder='You can join http://discord.gg/example to appeal this ban.'
+                    placeholder='Du kan joine http://discord.gg/example for at anke din banlysning.'
                     defaultValue={cfg.rejectionMessage.initialValue}
                     onInput={updatePageState}
                     autoComplete="off"
@@ -125,34 +125,34 @@ export default function ConfigCardBans({ cardCtx, pageCtx }: SettingsCardProps) 
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    Optional message to display to a player on the rejection message that shows when they try to connect while being banned. <br />
-                    If you have a ban appeal process, you can use this field to inform the players.
+                    Valgfri besked at vise spilleren på som begrundelse for afvisning, når de prøver at tilslutte sig serveren imens de er udelukket. <br />
+                    Hvis du har en process for at anke udelukkelser, du kan bruge dette felt til at informere spillere.
                 </SettingItemDesc>
             </SettingItem>
 
             {showAdvanced && <AdvancedDivider />}
 
-            <SettingItem label="Required Ban HWID Matches" htmlFor={cfg.requiredHwids.eid} showIf={showAdvanced}>
+            <SettingItem label="Nødvendige Ban HWID-matches" htmlFor={cfg.requiredHwids.eid} showIf={showAdvanced}>
                 <Select
                     value={selectNumberUtil.toUi(states.requiredHwids)}
                     onValueChange={(val) => cfg.requiredHwids.state.set(selectNumberUtil.toCfg(val))}
                     disabled={pageCtx.isReadOnly}
                 >
                     <SelectTrigger id={cfg.requiredHwids.eid}>
-                        <SelectValue placeholder="Select..." />
+                        <SelectValue placeholder="Vælg..." />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="1">1 - recommended</SelectItem>
-                        <SelectItem value="2">2 - lax</SelectItem>
-                        <SelectItem value="3">3 - very lax</SelectItem>
-                        <SelectItem value="4">4 - virtually disabled</SelectItem>
-                        <SelectItem value="0">Disable HWID Bans</SelectItem>
+                        <SelectItem value="1">1 - anbefalet</SelectItem>
+                        <SelectItem value="2">2 - svag</SelectItem>
+                        <SelectItem value="3">3 - virkelig svag</SelectItem>
+                        <SelectItem value="4">4 - Virtuelt deaktiveret</SelectItem>
+                        <SelectItem value="0">Deaktiver HWID Udelukkelser</SelectItem>
                     </SelectContent>
                 </Select>
                 <SettingItemDesc>
-                    This option configures how many HWID tokens must match between a player and an existing ban for the player join to be blocked, or can disable HWID Bans entirely. <br />
-                    Since Hardware ID Tokens are not guaranteed to be unique, there is the possibility of tokens from two players matching without them being related to each other. <br />
-                    <strong>Note:</strong> Most players have 3 to 6 HWID tokens.
+                    Denne indstilling konfigurerer, hvor mange HWID-tokens der skal matche mellem en spiller og en eksisterende udelukkelse, for at spilleren kan blive blokeret, eller kan helt deaktivere HWID-udelukkelser. <br />
+                    Siden Hardware ID Tokens ikke er garanteret at være unikke, kan der være en mulighed for tokens fra to spillere der matcher selvom de ikke har nogen relation til hinnanden. <br />
+                    <strong>Note:</strong> De fleste spillere har 3 til 6 HWID tokens.
                 </SettingItemDesc>
             </SettingItem>
         </SettingsCardShell>

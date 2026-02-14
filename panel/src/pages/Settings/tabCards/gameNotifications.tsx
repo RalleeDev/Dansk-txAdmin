@@ -54,88 +54,88 @@ export default function ConfigCardGameNotifications({ cardCtx, pageCtx }: Settin
             pageCtx={pageCtx}
             onClickSave={handleOnSave}
         >
-            <SettingItem label="Hide Admin Name In Punishments">
+            <SettingItem label="Skjul administrator navn ved straf">
                 <SwitchText
                     id={cfg.hideAdminInPunishments.eid}
-                    checkedLabel="Hidden"
-                    uncheckedLabel="Visible"
+                    checkedLabel="Skjult"
+                    uncheckedLabel="Synlig"
                     checked={states.hideAdminInPunishments}
                     onCheckedChange={cfg.hideAdminInPunishments.state.set}
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    Never show to the players the admin name on <strong>Bans</strong> or <strong>Warns</strong>. <br />
-                    This information will still be available in the history and logs.
+                    Aldrig vis spillerne navnet på administratoren på <strong>Udelukkelser</strong> eller <strong>Advarsler</strong>. <br />
+                    Denne information ville stadig være tilgængelig i historik og logs.
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Hide Admin Name In Messages">
+            <SettingItem label="Skjul administratorens navn i beskeder">
                 <SwitchText
                     id={cfg.hideAdminInMessages.eid}
-                    checkedLabel="Hidden"
-                    uncheckedLabel="Visible"
+                    checkedLabel="Skjult"
+                    uncheckedLabel="Synlig"
                     checked={states.hideAdminInMessages}
                     onCheckedChange={cfg.hideAdminInMessages.state.set}
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    Do not show the admin name on <strong>Announcements</strong> or <strong>DMs</strong>. <br />
-                    This information will still be available in the live console and logs.
+                    Vil ikke vise administratorens navn på <strong>Offentlige Annonceringer</strong> eller <strong>Private beskeder</strong>. <br />
+                    Denne information ville stadig være tilgængelig i Live Konsollen og logs.
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Hide Announcement Notifications">
+            <SettingItem label="Skjul notifikationer for Annonceringer">
                 <SwitchText
                     id={cfg.hideDefaultAnnouncement.eid}
-                    checkedLabel="Hidden"
-                    uncheckedLabel="Visible"
+                    checkedLabel="Skjult"
+                    uncheckedLabel="Synlig"
                     checked={states.hideDefaultAnnouncement}
                     onCheckedChange={cfg.hideDefaultAnnouncement.state.set}
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    Suppresses the display of announcements, allowing you to implement your own announcement via the event <InlineCode>txAdmin:events:announcement</InlineCode>.
-                    <TxAnchor href="https://aka.cfx.re/txadmin-events#txadmineventsannouncement">Documentation</TxAnchor>
+                    Dæmper displayet af anonceringer, som tillader dig at implmentere dine egne annonceringer igennem eventet <InlineCode>txAdmin:events:announcement</InlineCode>.
+                    <TxAnchor href="https://aka.cfx.re/txadmin-events#txadmineventsannouncement">Dokumentation</TxAnchor>
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Hide Direct Message Notification">
+            <SettingItem label="Skjul Notifikationer For Direkte Beskeder">
                 <SwitchText
                     id={cfg.hideDefaultDirectMessage.eid}
-                    checkedLabel="Hidden"
-                    uncheckedLabel="Visible"
+                    checkedLabel="Skjult"
+                    uncheckedLabel="Synlig"
                     checked={states.hideDefaultDirectMessage}
                     onCheckedChange={cfg.hideDefaultDirectMessage.state.set}
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    Suppresses the display of direct messages, allowing you to implement your own direct message notification via the event <InlineCode>txAdmin:events:playerDirectMessage</InlineCode>.
-                    <TxAnchor href="https://aka.cfx.re/txadmin-events#txadmineventsplayerdirectmessage">Documentation</TxAnchor>
+                    Skjuler notifikationer af direkte beskeder, som gør det muligt for dig at lave din egen implmentation af direkte beskeder <InlineCode>txAdmin:events:playerDirectMessage</InlineCode>.
+                    <TxAnchor href="https://aka.cfx.re/txadmin-events#txadmineventsplayerdirectmessage">Dokumentation</TxAnchor>
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Hide Warning Notification">
+            <SettingItem label="Skjul Advarsels Notifikationer">
                 <SwitchText
                     id={cfg.hideDefaultWarning.eid}
-                    checkedLabel="Hidden"
-                    uncheckedLabel="Visible"
+                    checkedLabel="Skjult"
+                    uncheckedLabel="Synlig"
                     checked={states.hideDefaultWarning}
                     onCheckedChange={cfg.hideDefaultWarning.state.set}
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    Suppresses the display of warnings, allowing you to implement your own warning via the event <InlineCode>txAdmin:events:playerWarned</InlineCode>.
-                    <TxAnchor href="https://aka.cfx.re/txadmin-events#txadmineventsplayerwarned">Documentation</TxAnchor>
+                    Skjuler notifikationer fra advarsler, som tillader dig af lave din egen implementation af eventet <InlineCode>txAdmin:events:playerWarned</InlineCode>.
+                    <TxAnchor href="https://aka.cfx.re/txadmin-events#txadmineventsplayerwarned">Dokumentation</TxAnchor>
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Hide Scheduled Restart Warnings">
+            <SettingItem label="Skjul Notifikationer For Planlagt Genstart">
                 <SwitchText
                     id={cfg.hideScheduledRestartWarnings.eid}
-                    checkedLabel="Hidden"
-                    uncheckedLabel="Visible"
+                    checkedLabel="Skjult"
+                    uncheckedLabel="Synlig"
                     checked={states.hideScheduledRestartWarnings}
                     onCheckedChange={cfg.hideScheduledRestartWarnings.state.set}
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    Suppresses the display of scheduled restart warnings, allowing you to implement your own warning via the event <InlineCode>txAdmin:events:scheduledRestart</InlineCode>.
-                    <TxAnchor href="https://aka.cfx.re/txadmin-events#txadmineventsscheduledrestart">Documentation</TxAnchor>
+                    Skjuler notifikationer om planlagt genstart, der gør det muligt for dig at lave din egen implmentation af eventet <InlineCode>txAdmin:events:scheduledRestart</InlineCode>.
+                    <TxAnchor href="https://aka.cfx.re/txadmin-events#txadmineventsscheduledrestart">Dokumentation</TxAnchor>
                 </SettingItemDesc>
             </SettingItem>
         </SettingsCardShell>

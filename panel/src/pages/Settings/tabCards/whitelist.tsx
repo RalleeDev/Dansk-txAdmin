@@ -69,9 +69,9 @@ export default function ConfigCardWhitelist({ cardCtx, pageCtx }: SettingsCardPr
             && localConfigs.whitelist.rejectionMessage.length > 512
         ) {
             return txToast.error({
-                title: 'The Whitelist Rejection Message is too big.',
+                title: 'Whitelist afvisnings beskeden er for stor.',
                 md: true,
-                msg: 'The message must be 512 characters or less.',
+                msg: 'Beskeden skal være 512 karakter eller mindre.',
             });
         }
         if (
@@ -80,8 +80,8 @@ export default function ConfigCardWhitelist({ cardCtx, pageCtx }: SettingsCardPr
         ) {
             if (pageCtx.apiData?.storedConfigs.discordBot?.enabled !== true) {
                 return txToast.warning({
-                    title: 'Discord Bot is required.',
-                    msg: 'You need to enable the Discord Bot in the Discord tab to use Discord-based whitelist modes.',
+                    title: 'Kræver at Discord bot er aktiveret',
+                    msg: 'Du skal aktivere Discord Bot i Discord fanen for at bruge Discord-baseret whitelist tilstand.',
                 });
             }
             if (
@@ -92,8 +92,8 @@ export default function ConfigCardWhitelist({ cardCtx, pageCtx }: SettingsCardPr
                 )
             ) {
                 return txToast.warning({
-                    title: 'Discord Roles are required.',
-                    msg: 'You need to specify at least one Discord Role ID to use the "Discord Server Roles" whitelist mode.',
+                    title: 'Kræver discord roller.',
+                    msg: 'Du skal specificere mindst et discord rolle-id for at bruge "Discord Server Rolle" whitelist tilstand.',
                 });
             }
         }
@@ -103,9 +103,9 @@ export default function ConfigCardWhitelist({ cardCtx, pageCtx }: SettingsCardPr
                 .map(x => `- \`${x.slice(0, 20)}\``);
             if (invalidRoles.length) {
                 return txToast.error({
-                    title: 'Invalid Discord Role ID(s).',
+                    title: 'Ugyldigt discord rolle ID(er).',
                     md: true,
-                    msg: 'The following Discord Role ID(s) are invalid: \n' + invalidRoles.join('\n'),
+                    msg: 'Følgende discord rolle ID(er) er ugyldige: \n' + invalidRoles.join('\n'),
                 });
             }
         }
@@ -118,7 +118,7 @@ export default function ConfigCardWhitelist({ cardCtx, pageCtx }: SettingsCardPr
             pageCtx={pageCtx}
             onClickSave={handleOnSave}
         >
-            <SettingItem label="Whitelist Mode">
+            <SettingItem label="Whitelist Tilstand">
                 <RadioGroup
                     value={states.whitelistMode}
                     onValueChange={cfg.whitelistMode.state.set as any}
@@ -127,29 +127,29 @@ export default function ConfigCardWhitelist({ cardCtx, pageCtx }: SettingsCardPr
                     <BigRadioItem
                         groupValue={states.whitelistMode}
                         value="disabled"
-                        title="Disabled"
-                        desc="No whitelist status will be checked by txAdmin."
+                        title="Deaktiveret"
+                        desc="Intet whitelist status vil blive checket af txAdmin."
                     />
                     <BigRadioItem
                         groupValue={states.whitelistMode}
                         value="adminOnly"
-                        title="Admin-only (maintenance mode)"
+                        title="Kun for administratorer (Vedligeholdelses tilstand)"
                         desc={(<>
-                            Will only allow server join if your <InlineCode>fivem:</InlineCode> or <InlineCode>discord:</InlineCode> identifiers are attached to a txAdmin administrator. Also known as maintenance mode.
+                            ville kun lade spillere tilslutte sig hvis deres <InlineCode>fivem:</InlineCode> eller <InlineCode>discord:</InlineCode> identifikator er tilknyttet en txAdmin administrator. også kendt som vedligeholdelses tilstand.
                         </>)}
                     />
                     <BigRadioItem
                         groupValue={states.whitelistMode}
                         value="discordMember"
-                        title="Discord Server Member"
+                        title="Medlem af Discord Server"
                         desc={(<>
-                            Checks if the player joining has a <InlineCode>discord:</InlineCode> identifier and is present in the Discord server configured in the Discord Tab.
+                            Checker om spilleren der tilslutter har en <InlineCode>discord:</InlineCode> identifikator og er til stede på den discord der er specificeret i "Discord" fanen.
                         </>)}
                     />
                     <BigRadioItem
                         groupValue={states.whitelistMode}
                         value="discordRoles"
-                        title="Discord Server Roles"
+                        title="Rolle På Discord Server"
                         desc={(<>
                             Checks if the player joining has a <InlineCode>discord:</InlineCode> identifier and is present in the Discord server configured in the Discord Tab and has at least one of the roles specified below.
                         </>)}
@@ -157,18 +157,18 @@ export default function ConfigCardWhitelist({ cardCtx, pageCtx }: SettingsCardPr
                     <BigRadioItem
                         groupValue={states.whitelistMode}
                         value="approvedLicense"
-                        title="Approved License"
+                        title="Godkendte licenser"
                         desc={(<>
-                            The player <InlineCode>license:</InlineCode> identifier must be whitelisted by a txAdmin administrator. This can be done through the <TxAnchor href="/whitelist">Whitelist page</TxAnchor>, or the <InlineCode>/whitelist</InlineCode> Discord bot slash command.
+                            Spillerens <InlineCode>license:</InlineCode> identifikator skal være whitelisted af en txAdmin administrator. De kan blive gjort igennem siden <TxAnchor href="/whitelist">Whitelist</TxAnchor>, eller <InlineCode>/whitelist</InlineCode> kommandoen på discord botten.
                         </>)}
                     />
                 </RadioGroup>
             </SettingItem>
-            <SettingItem label="Whitelist Rejection Message" htmlFor={cfg.rejectionMessage.eid} showOptional>
+            <SettingItem label="Whitelist begrundelse for afvisning" htmlFor={cfg.rejectionMessage.eid} showOptional>
                 <AutosizeTextarea
                     id={cfg.rejectionMessage.eid}
                     ref={rejectionMessageRef}
-                    placeholder='Please join http://discord.gg/example and request to be whitelisted.'
+                    placeholder='Join venligst http://discord.gg/example og anmod om at blive whitelisted.'
                     defaultValue={cfg.rejectionMessage.initialValue}
                     onInput={updatePageState}
                     autoComplete="off"
@@ -177,11 +177,11 @@ export default function ConfigCardWhitelist({ cardCtx, pageCtx }: SettingsCardPr
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    Optional message to display to a player on the rejection message that shows when they try to connect while not being whitelisted. <br />
-                    If you have a Discord whitelisting process, include here a invite link.
+                    Valgfri besked at vise spilleren når de bliver afvist for at tilslutte sig serveren uden whitelist <br />
+                    Hvis du har en process på at ansøge om whitelist, inkludere et invite link her.
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Whitelisted Discord Roles" htmlFor={cfg.discordRoles.eid}>
+            <SettingItem label="Whitelisted Discord Roller" htmlFor={cfg.discordRoles.eid}>
                 <Input
                     id={cfg.discordRoles.eid}
                     ref={discordRolesRef}
@@ -191,9 +191,9 @@ export default function ConfigCardWhitelist({ cardCtx, pageCtx }: SettingsCardPr
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    The ID of the Discord roles that are whitelisted to join the server. <br />
-                    This field supports multiple roles, separated by comma. <br />
-                    <strong>Note:</strong> Requires the whitelist mode to be set to "Discord Server Roles".
+                    ID på discord rollerne der er whitelisted til at tilslutte serveren. <br />
+                    Dette felt understøtter flere roller, separeret af kommaer. <br />
+                    <strong>Note:</strong> Kræver at whitelist tilstanden er sat på "Rolle På Discord Servers".
                 </SettingItemDesc>
             </SettingItem>
         </SettingsCardShell>

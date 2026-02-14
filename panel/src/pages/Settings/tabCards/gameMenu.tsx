@@ -72,38 +72,38 @@ export default function ConfigCardGameMenu({ cardCtx, pageCtx }: SettingsCardPro
             advancedVisible={showAdvanced}
             advancedSetter={setShowAdvanced}
         >
-            <SettingItem label="Game Menu">
+            <SettingItem label="Ingame Menu">
                 <SwitchText
                     id={cfg.menuEnabled.eid}
-                    checkedLabel="Enabled"
-                    uncheckedLabel="Disabled"
+                    checkedLabel="Aktiveret"
+                    uncheckedLabel="Deaktiveret"
                     variant="checkedGreen"
                     checked={states.menuEnabled}
                     onCheckedChange={cfg.menuEnabled.state.set}
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    When enabled, admins will be able to open the menu by typing <InlineCode>/tx</InlineCode> or using the keybind configured in the FiveM/RedM settings.
+                    Når aktiveret, Administratore kan åbne menuen ved at skrive <InlineCode>/tx</InlineCode> eller bruge hotkeyen fra dine FiveM/RedM indstillinger.
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Align Menu Right">
+            <SettingItem label="Juster menu til højre">
                 <SwitchText
                     id={cfg.alignRight.eid}
-                    checkedLabel="Right aligned"
-                    uncheckedLabel="Left aligned"
+                    checkedLabel="Justeret til højre"
+                    uncheckedLabel="Justere til venstre"
                     checked={states.alignRight}
                     onCheckedChange={cfg.alignRight.state.set}
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    Move menu to the right side of the screen.
+                    Flytter menuen til den højre side af skærmen.
                 </SettingItemDesc>
             </SettingItem>
             <SettingItem label="Menu Page Switch Key" htmlFor={cfg.pageKey.eid} required>
                 <Input
                     id={cfg.pageKey.eid}
                     value={states.pageKey}
-                    placeholder='click here and use the key to change'
+                    placeholder='Klik her og bagefter på den knap du vil bruge'
                     onKeyDown={handlePageKey}
                     className="font-mono"
                     readOnly
@@ -111,27 +111,27 @@ export default function ConfigCardGameMenu({ cardCtx, pageCtx }: SettingsCardPro
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    The key used to to switch tabs in the menu. <br />
-                    Click above and press any key to change the configuration. <br />
-                    <strong>Note:</strong> The default is <InlineCode>Tab</InlineCode>, and you cannot use <InlineCode>Escape</InlineCode> or <InlineCode>Backspace</InlineCode>.
+                    Knappen der bruges til at skifte faner i menuen. <br />
+                    Klik ovenover og tryk på enhver knap for at ændre konfigurationen. <br />
+                    <strong>Note:</strong> Standard knappen er <InlineCode>Tab</InlineCode>, og du kan ikke bruge <InlineCode>Escape</InlineCode> eller <InlineCode>Retur</InlineCode>.
                 </SettingItemDesc>
             </SettingItem>
 
             {showAdvanced && <AdvancedDivider />}
 
-            <SettingItem label="Player Mode Change Effect" showIf={showAdvanced}>
+            <SettingItem label="Effect ved ændring spiller tilstand" showIf={showAdvanced}>
                 <SwitchText
                     id={cfg.playerModePtfx.eid}
-                    checkedLabel="Enabled"
-                    uncheckedLabel="Disabled"
+                    checkedLabel="Aktiveret"
+                    uncheckedLabel="Deaktiveret"
                     variant="checkedGreen"
                     checked={states.playerModePtfx}
                     onCheckedChange={cfg.playerModePtfx.state.set}
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    Play a particle effect and sound when an admin uses NoClip, God Mode, etc. <br />
-                    <strong className="text-warning-inline">Warning:</strong> This options help prevent admin abuse during PvP by making it visible/audible to all players that an admin is using a special mode. We recommend keeping it enabled.
+                    Afspiller en partikel effekt når en administrator bruger NoClip, Gud tilstand, OSV. <br />
+                    <strong className="text-warning-inline">Advarsel:</strong> Denne indstilling hjælper med at kæmpe imod administrator misbrug under PvP ved at gøre det synligt/lydlig til alle spillere at en administrator er i en unfair tilstand. Vi anbefaler at beholde den aktiveret.
                 </SettingItemDesc>
             </SettingItem>
         </SettingsCardShell>

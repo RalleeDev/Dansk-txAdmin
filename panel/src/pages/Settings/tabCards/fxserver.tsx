@@ -70,36 +70,36 @@ function RestartScheduleBox({ restartTimes, setRestartTimes, disabled }: Restart
                     {restartTimes && restartTimes.length === 0 && (
                         <div className="text-sm text-muted-foreground">
                             <span>
-                                No schedule set. Click on the <strong>+</strong> button to add a time.
+                                Intet skema indstillet. Klik på <strong>+</strong> knappen for at tilføje en tid.
                             </span>
                             <p>
-                                {'Presets: '}
+                                {'Skabeloner: '}
                                 <a
                                     onClick={() => applyPreset(['00:00'])}
                                     className="cursor-pointer text-sm text-primary hover:underline"
                                 >
-                                    1x<span className={presetSpanClasses}>/day</span>
+                                    1x<span className={presetSpanClasses}>/dag</span>
                                 </a>
                                 {', '}
                                 <a
                                     onClick={() => applyPreset(['00:00', '12:00'])}
                                     className="cursor-pointer text-sm text-primary hover:underline"
                                 >
-                                    2x<span className={presetSpanClasses}>/day</span>
+                                    2x<span className={presetSpanClasses}>/dag</span>
                                 </a>
                                 {', '}
                                 <a
                                     onClick={() => applyPreset(['00:00', '08:00', '16:00'])}
                                     className="cursor-pointer text-sm text-primary hover:underline"
                                 >
-                                    3x<span className={presetSpanClasses}>/day</span>
+                                    3x<span className={presetSpanClasses}>/dag</span>
                                 </a>
                                 {', '}
                                 <a
                                     onClick={() => applyPreset(['00:00', '06:00', '12:00', '18:00'])}
                                     className="cursor-pointer text-sm text-primary hover:underline"
                                 >
-                                    4x<span className={presetSpanClasses}>/day</span>
+                                    4x<span className={presetSpanClasses}>/dag</span>
                                 </a>
                             </p>
                         </div>
@@ -142,7 +142,7 @@ function RestartScheduleBox({ restartTimes, setRestartTimes, disabled }: Restart
                 </div>
             </div>
             <TimeInputDialog
-                title="Add Restart Time"
+                title="Tilføj et tidspunkt til genstart"
                 isOpen={isTimeInputOpen}
                 onClose={() => setIsTimeInputOpen(false)}
                 onSubmit={addTime}
@@ -170,7 +170,7 @@ function TimeZoneWarning() {
         if (window.txConsts.serverTimezone !== browserTimezone) {
             return (
                 <SettingItemDesc className="text-destructive-inline">
-                    <strong>Warning:</strong> Your server timezone is set to <InlineCode>{window.txConsts.serverTimezone}</InlineCode>, but your browser timezone is <InlineCode>{browserTimezone}</InlineCode>. Make sure to configure the time according to the server timezone.
+                    <strong>Advarsel:</strong> Serverens tidszone er sat til <InlineCode>{window.txConsts.serverTimezone}</InlineCode>, men din browsers er sat til <InlineCode>{browserTimezone}</InlineCode>. Husk at konfigure tiden efter serverens tidszone.
                 </SettingItemDesc>
             );
         }
@@ -269,16 +269,16 @@ export default function ConfigCardFxserver({ cardCtx, pageCtx }: SettingsCardPro
 
         if (!localConfigs.server?.dataPath) {
             return txToast.error({
-                title: 'The Server Data Folder is required.',
+                title: 'Mappen med server data er påkrævet.',
                 md: true,
-                msg: 'If you want to return to the Setup page, click on the "Reset" button instead.',
+                msg: 'Hvis du ville vende tilbage til opsætningsiden, klik på "Nulstil" knappen istedet.',
             });
         }
         if (localConfigs.server.cfgPath !== undefined && !localConfigs.server.cfgPath) {
             return txToast.error({
-                title: 'The CFG File Path is required.',
+                title: 'Stien til CFG filen er påkrævet',
                 md: true,
-                msg: 'The value should probably be `server.cfg`.',
+                msg: 'Inputtet skulle meget gerne være `server.cfg`.',
             });
         }
         if (
@@ -286,9 +286,9 @@ export default function ConfigCardFxserver({ cardCtx, pageCtx }: SettingsCardPro
             && localConfigs.server.startupArgs.some((arg) => arg.toLowerCase() === 'onesync')
         ) {
             return txToast.error({
-                title: 'You cannot set OneSync in Startup Arguments.',
+                title: 'Du kan ikke indstille OneSync i opstarts argumenterne.',
                 md: true,
-                msg: 'Please use the selectbox below it.',
+                msg: 'Brug venligst boksen med valgmuligheder nedenunder.',
             });
         }
         pageCtx.saveChanges(cardCtx, localConfigs);
@@ -308,20 +308,20 @@ export default function ConfigCardFxserver({ cardCtx, pageCtx }: SettingsCardPro
     });
     const handleResetServerData = () => {
         openConfirmDialog({
-            title: 'Reset Server Data Path',
+            title: 'Nulstil Server Data Stien',
             message: (<>
-                Are you sure you want to reset the server data path? <br />
+                Er du sikker på du ville nulstille stien til din server data <br />
                 <br />
-                <strong>This will not delete any resource files or database</strong>, but just reset the txAdmin configuration, allowing you to go back to the Setup page. <br />
-                If you want, you can set the path back to the current value later. <br />
+                <strong>Det ville ikke slette nogen ressourcer</strong>,man bare nulstille txAdmin konfigurationer, Så du kan vende tilbage til Opsætningen. <br />
+                Hvis du vil, Hvis du ville, kan du sætte stien tilbage til den nuværende værdi senere. <br />
                 <br />
-                <strong className="text-warning-inline">Warning:</strong> take note of the current path before proceeding, so you can set it back later if you need to. Current path:
+                <strong className="text-warning-inline">Advarsel:</strong> Tag en note af den nuværende sti inden du fortsætter, så du kan indstille den tilbage senere hvis du får brug for det. Nuværende sti:
                 <Input value={cfg.dataPath.initialValue} className="mt-2" readOnly />
             </>),
             onConfirm: () => {
                 setIsResettingServerData(true);
                 resetServerDataApi({
-                    toastLoadingMessage: 'Resetting server data path...',
+                    toastLoadingMessage: 'Nulstiller stien til server dataen...',
                     success: (data, toastId) => {
                         if (data.type === 'success') {
                             setLocation('/server/setup');
@@ -346,7 +346,7 @@ export default function ConfigCardFxserver({ cardCtx, pageCtx }: SettingsCardPro
             advancedVisible={showAdvanced}
             advancedSetter={setShowAdvanced}
         >
-            <SettingItem label="Server Data Folder" htmlFor={cfg.dataPath.eid} required>
+            <SettingItem label="Server Data Mappe" htmlFor={cfg.dataPath.eid} required>
                 <div className="flex gap-2">
                     <Input
                         id={cfg.dataPath.eid}
@@ -363,21 +363,21 @@ export default function ConfigCardFxserver({ cardCtx, pageCtx }: SettingsCardPro
                         disabled={pageCtx.isReadOnly || !hasPerm('all_permissions') || isResettingServerData}
                         onClick={handleResetServerData}
                     >
-                        <Undo2Icon className="mr-2 h-4 w-4" /> Reset
+                        <Undo2Icon className="mr-2 h-4 w-4" /> Nulstil
                     </Button>
                 </div>
                 <SettingItemDesc>
-                    The full path of the folder that <strong>contains</strong> the <InlineCode>resources</InlineCode> folder, usually it's the same place that contains your <InlineCode>server.cfg</InlineCode>. <br />
-                    Resetting this value will allow you to go back to the Setup page, without deleting any files.
+                    Den fulde sti til mappen der <strong>indeholder</strong> dine <InlineCode>resources</InlineCode> mappe, Det er ofte det samme sted der indeholder din <InlineCode>server.cfg</InlineCode>. <br />
+                    Nulstilning af denne værdi vil smide dig tilbage til Opsætnings siden, uden at slette nogle filer.
                     {pageCtx.apiData?.dataPath && pageCtx.apiData?.hasCustomDataPath && (<>
                         <br />
                         <span className="text-warning-inline">
-                            {window.txConsts.hostConfigSource}: This path should start with <InlineCode>{pageCtx.apiData.dataPath}</InlineCode> .
+                            {window.txConsts.hostConfigSource}: Denne sti burde starte med <InlineCode>{pageCtx.apiData.dataPath}</InlineCode> .
                         </span>
                     </>)}
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Restart Schedule" showOptional>
+            <SettingItem label="Tidsplan for genstart" showOptional>
                 <RestartScheduleBox
                     restartTimes={states.restarterSchedule}
                     setRestartTimes={cfg.restarterSchedule.state.set}
@@ -385,32 +385,32 @@ export default function ConfigCardFxserver({ cardCtx, pageCtx }: SettingsCardPro
                 />
                 <TimeZoneWarning />
                 <SettingItemDesc>
-                    At which times of day to restart the server. <br />
-                    <strong>Note:</strong> Make sure your schedule matches your server time and not your local time.
+                    På hvilket tidspunkt om dagen skal serveren genstarte. <br />
+                    <strong>Note:</strong> Sørg for skemaet matcher din servers tidzone og ikke din lokale tid.
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Quiet Mode">
+            <SettingItem label="Stille tilstand">
                 <SwitchText
                     id={cfg.quietMode.eid}
-                    checkedLabel="Enabled"
-                    uncheckedLabel="Disabled"
+                    checkedLabel="Aktiveret"
+                    uncheckedLabel="Deaktiveret"
                     checked={forceQuietMode || states.quietMode}
                     onCheckedChange={cfg.quietMode.state.set}
                     disabled={pageCtx.isReadOnly || forceQuietMode}
                 />
                 <SettingItemDesc>
-                    Do not print FXServer's output to the terminal. <br />
-                    You will still be able to use the Live Console.
+                    Vis ikke FXServer's output i terminalen. <br />
+                    Du vil stadig være i stand til at bruge Live Konsollen.
                     {forceQuietMode && (<>
                         <br />
-                        <span className="text-warning-inline">{window.txConsts.hostConfigSource}: This setting is locked and cannot be changed.</span>
+                        <span className="text-warning-inline">{window.txConsts.hostConfigSource}: Denne indstilling er låst og kan ikke ændres.</span>
                     </>)}
                 </SettingItemDesc>
             </SettingItem>
 
             {showAdvanced && <AdvancedDivider />}
 
-            <SettingItem label="CFG File Path" htmlFor={cfg.cfgPath.eid} showIf={showAdvanced} required>
+            <SettingItem label="CFG fil sti" htmlFor={cfg.cfgPath.eid} showIf={showAdvanced} required>
                 <Input
                     id={cfg.cfgPath.eid}
                     ref={cfgPathRef}
@@ -421,11 +421,11 @@ export default function ConfigCardFxserver({ cardCtx, pageCtx }: SettingsCardPro
                     required
                 />
                 <SettingItemDesc>
-                    The path to your server config file, probably named <InlineCode>server.cfg</InlineCode>. <br />
-                    This can either be absolute, or relative to the Server Data folder.
+                    Stien til din server konfigurations fil, sandsynligvis kaldet <InlineCode>server.cfg</InlineCode>. <br />
+                    Dette kan enten være absolut eller relativt i forhold til mappen med server data..
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Startup Arguments" htmlFor={cfg.startupArgs.eid} showIf={showAdvanced}>
+            <SettingItem label="Opstarts argumenter" htmlFor={cfg.startupArgs.eid} showIf={showAdvanced}>
                 <Input
                     id={cfg.startupArgs.eid}
                     ref={startupArgsRef}
@@ -435,8 +435,8 @@ export default function ConfigCardFxserver({ cardCtx, pageCtx }: SettingsCardPro
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    Additional command-line arguments to pass to the FXServer instance such as NodeJS CLI flags. <br />
-                    <strong>Warning:</strong> You almost certainly should not use this option, commands and convars should be placed in your <InlineCode>server.cfg</InlineCode> instead.
+                    Yderligere kommandolinjeargumenter der skal videregives til FXServer instansen så som NodeJS CLI-flag. <br />
+                    <strong>Advarsel:</strong> Du bør næsten helt sikkert ikke bruge denne indstilling, kommandoer og convars burde placeres i din <InlineCode>server.cfg</InlineCode> istedet.
                 </SettingItemDesc>
             </SettingItem>
             <SettingItem label="OneSync" htmlFor={cfg.onesync.eid} showIf={showAdvanced}>
@@ -446,52 +446,52 @@ export default function ConfigCardFxserver({ cardCtx, pageCtx }: SettingsCardPro
                     disabled={pageCtx.isReadOnly}
                 >
                     <SelectTrigger id={cfg.onesync.eid}>
-                        <SelectValue placeholder="Select OneSync option" />
+                        <SelectValue placeholder="Vælg en OneSync idnstilling" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="on">On (recommended)</SelectItem>
+                        <SelectItem value="on">Aktiveret (anbefalet)</SelectItem>
                         <SelectItem value="legacy">Legacy</SelectItem>
-                        <SelectItem value="off">Off</SelectItem>
+                        <SelectItem value="off">Deaktiveret</SelectItem>
                     </SelectContent>
                 </Select>
                 <SettingItemDesc>
-                    Most servers should be using <strong>OneSync On</strong>. <br />
-                    The other options are considered deprecated and should not be used unless you know what you're doing.
-                    For more information, please read the <TxAnchor href="https://docs.fivem.net/docs/scripting-reference/onesync/" >documentation</TxAnchor>.
+                    De fleste servere burde have <strong>Aktiveret OneSync</strong>. <br />
+                    De andre muligheder betragtes som deprecated og bør ikke bruges, medmindre du ved, hvad du gør.
+                    for mere information, Læs venligst <TxAnchor href="https://docs.fivem.net/docs/scripting-reference/onesync/" >dokumentationen</TxAnchor>.
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Autostart" showIf={showAdvanced}>
+            <SettingItem label="Automatisk Start" showIf={showAdvanced}>
                 <SwitchText
                     id={cfg.autoStart.eid}
-                    checkedLabel="Enabled"
-                    uncheckedLabel="Disabled"
+                    checkedLabel="Aktiveret"
+                    uncheckedLabel="Deaktiveret"
                     checked={states.autoStart}
                     onCheckedChange={cfg.autoStart.state.set}
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    Start the server automatically after <strong>txAdmin</strong> starts.
+                    Start serveren automatisk efter <strong>txAdmin</strong> startes.
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Resource Starting Tolerance" htmlFor={cfg.resourceTolerance.eid} showIf={showAdvanced}>
+            <SettingItem label="Resource Starttolerance" htmlFor={cfg.resourceTolerance.eid} showIf={showAdvanced}>
                 <Select
                     value={selectNumberUtil.toUi(states.resourceTolerance)}
                     onValueChange={(val) => cfg.resourceTolerance.state.set(selectNumberUtil.toCfg(val))}
                     disabled={pageCtx.isReadOnly}
                 >
                     <SelectTrigger id={cfg.resourceTolerance.eid}>
-                        <SelectValue placeholder="Select..." />
+                        <SelectValue placeholder="Vælg..." />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="90">1.5 minutes (default)</SelectItem>
-                        <SelectItem value="180">3 minutes</SelectItem>
-                        <SelectItem value="300">5 minutes</SelectItem>
-                        <SelectItem value="600">10 minutes</SelectItem>
+                        <SelectItem value="90">1.5 minutter (standard)</SelectItem>
+                        <SelectItem value="180">3 minutter</SelectItem>
+                        <SelectItem value="300">5 minutter</SelectItem>
+                        <SelectItem value="600">10 minutter</SelectItem>
                     </SelectContent>
                 </Select>
                 <SettingItemDesc>
-                    At server boot, how much time to wait for any single resource to start before restarting the server. <br />
-                    <strong>Note:</strong> If you are getting <InlineCode>failed to start in time</InlineCode> errors, increase this value.
+                    Ved server start, hvor lang tid skal der ventes på at en enkelt ressource starter, før serveren gemstarter. <br />
+                    <strong>Note:</strong> Hvis du får <InlineCode>failed to start in time</InlineCode> fejl, forøg denne værdi.
                 </SettingItemDesc>
             </SettingItem>
         </SettingsCardShell>

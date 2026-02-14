@@ -65,10 +65,10 @@ export default function ConfigCardGeneral({ cardCtx, pageCtx }: SettingsCardProp
         if (!hasChanges) return;
 
         if (!localConfigs.general?.serverName) {
-            return txToast.error('The Server Name is required.');
+            return txToast.error('Et server navn er påkrævet.');
         }
         if (localConfigs.general?.serverName?.length > 18) {
-            return txToast.error('The Server Name is too big.');
+            return txToast.error('Server navnet er for stort.');
         }
         pageCtx.saveChanges(cardCtx, localConfigs);
     }
@@ -98,7 +98,7 @@ export default function ConfigCardGeneral({ cardCtx, pageCtx }: SettingsCardProp
             'sep1',
             ...otherData,
             'sep2',
-            { code: 'custom', label: 'Custom (txData/locale.json)' }
+            { code: 'custom', label: 'Tilpasset (txData/locale.json)' }
         ].filter(Boolean);
     }, [pageCtx.apiData]);
 
@@ -113,16 +113,16 @@ export default function ConfigCardGeneral({ cardCtx, pageCtx }: SettingsCardProp
                     id={cfg.serverName.eid}
                     ref={serverNameRef}
                     defaultValue={cfg.serverName.initialValue}
-                    placeholder={'Example RP'}
+                    placeholder={'Eksempel RP'}
                     onInput={updatePageState}
                     disabled={pageCtx.isReadOnly}
                 />
                 <SettingItemDesc>
-                    A <strong>short</strong> server name to be used in the txAdmin interface and Server/Discord messages. <br />
-                    The name must be between 1 and 18 characters.
+                    Et <strong>kort</strong> server navn som ville blive brugt i txAdmin og Server/Discord beskeder. <br />
+                    Navnet skal være imellem 1 og 18 karakter.
                 </SettingItemDesc>
             </SettingItem>
-            <SettingItem label="Language" htmlFor={cfg.language.eid} required>
+            <SettingItem label="Sprog" htmlFor={cfg.language.eid} required>
                 {/* TODO: add a "Edit xxx" button besides the language for easy custom.json locale */}
                 <Select
                     value={states.language}
@@ -141,9 +141,9 @@ export default function ConfigCardGeneral({ cardCtx, pageCtx }: SettingsCardProp
                     </SelectContent>
                 </Select>
                 <SettingItemDesc>
-                    The language to use on Chat/Discord messages. <br />
-                    You can customize the phrases/words by using the <InlineCode>Custom</InlineCode> option. <br />
-                    For more information, please read the <TxAnchor href="https://github.com/tabarra/txAdmin/blob/master/docs/translation.md">documentation</TxAnchor>.
+                    Sproget der skal bruges i Chat/Discord beskeder. <br />
+                    Du kan tilpasse ord/sætninger ved valg af <InlineCode>Tilpasset</InlineCode> valgmuligheden. <br />
+                    For mere information, Læs venligst <TxAnchor href="https://github.com/tabarra/txAdmin/blob/master/docs/translation.md">dokumentationen</TxAnchor>.
                 </SettingItemDesc>
             </SettingItem>
         </SettingsCardShell>

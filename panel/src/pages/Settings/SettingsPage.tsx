@@ -27,16 +27,16 @@ import { PageHeader, PageHeaderChangelog } from "@/components/page-header";
 
 //Tab configuration
 const settingsTabsBase = [
-    { name: 'General', Component: ConfigCardGeneral }, //TODO: cards [Server Listing, txAdmin]
+    { name: 'Generelt', Component: ConfigCardGeneral }, //TODO: cards [Server Listing, txAdmin]
     { name: 'FXServer', Component: ConfigCardFxserver },
-    { name: 'Bans', Component: ConfigCardBans },
+    { name: 'Udelukkelser', Component: ConfigCardBans },
     { name: 'Whitelist', Component: ConfigCardWhitelist },
     { name: 'Discord', Component: ConfigCardDiscord },
     {
-        name: 'Game',
+        name: 'Spil',
         cards: [
             { name: 'Menu', Component: ConfigCardGameMenu },
-            { name: 'Notifications', Component: ConfigCardGameNotifications },
+            { name: 'Notifikationer', Component: ConfigCardGameNotifications },
         ]
     },
     //Dev only
@@ -130,7 +130,7 @@ export default function SettingsPage() {
     //Handlers
     const saveChanges = async (source: SettingsCardContext, changes: PartialTxConfigs) => {
         if (isSaving) return;
-        const toastId = txToast.loading(`Saving ${source.cardTitle} settings...`, { id: 'settingsSave' });
+        const toastId = txToast.loading(`Gemmer ${source.cardTitle} indstillinger...`, { id: 'settingsSave' });
         setIsSaving(true);
         try {
             if (!swr.data) throw new Error('Cannot save changes without swr.data.');
@@ -162,7 +162,7 @@ export default function SettingsPage() {
             setCardPendingSave(null);
         } catch (error) {
             txToast.error({
-                title: `Error saving ${source.cardTitle} settings:`,
+                title: `Fejl ved at gemme ${source.cardTitle} indstillingerne:`,
                 msg: (error as any).message,
             }, { id: toastId });
         } finally {
@@ -180,8 +180,8 @@ export default function SettingsPage() {
     const handleTabChange = (newTab: string) => {
         if (cardPendingSave && newTab && newTab !== cardPendingSave?.tabId) {
             openConfirmDialog({
-                title: 'Discard Changes',
-                actionLabel: 'Discard',
+                title: 'Kassér ændringer',
+                actionLabel: 'Kassér',
                 confirmBtnVariant: 'destructive',
                 message: (<>
                     You have unsaved changes in the <strong>{cardPendingSave.cardTitle}</strong> tab. <br />
@@ -199,7 +199,7 @@ export default function SettingsPage() {
 
     return (
         <div className="w-full mb-10">
-            <PageHeader title="Settings" icon={<Settings2Icon />}>
+            <PageHeader title="Indstillinger" icon={<Settings2Icon />}>
                 <PageHeaderChangelog
                     changelogData={swr?.data?.changelog}
                 />

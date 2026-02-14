@@ -35,10 +35,10 @@ export default function SettingsCardShell({
                         <>
                             <li>{cardCtx.tabName}</li>
                             <ChevronRightIcon className='size-3.5 mt-0.5 inline align-text-top opacity-75' />
-                            <li>{cardCtx.cardName} Settings</li>
+                            <li>{cardCtx.cardName} Indstillinger</li>
                         </>
                     ) : (
-                        <li>{cardCtx.tabName} Settings</li>
+                        <li>{cardCtx.tabName} Indstillinger</li>
                     )}
                     {isCardPendingSave && (
                         // <div className="grow text-right xflex xitems-center xgap-1.5 xbg-lime-300">
@@ -47,7 +47,7 @@ export default function SettingsCardShell({
                         //     </li>
                         //     <li className="text-warning-inline italic tracking-wide">you have unsaved changes</li>
                         // </div>
-                        <li className="text-warning-inline italic tracking-wide">(unsaved changes)</li>
+                        <li className="text-warning-inline italic tracking-wide">(Ikke gemte ændringer)</li>
                     )}
                 </ol>
 
@@ -63,7 +63,7 @@ export default function SettingsCardShell({
                                 disabled={!isCardPendingSave || pageCtx.isReadOnly}
                                 onClick={onClickSave}
                             >
-                                Save {cardCtx.cardName} Settings
+                                Gem {cardCtx.cardName} Indstillingerne
                                 {pageCtx.isSaving && (
                                     <Loader2Icon className="h-3.5 mt-0.5 inline animate-spin" />
                                 )}
@@ -74,7 +74,7 @@ export default function SettingsCardShell({
                                     variant={'muted'}
                                     onClick={() => advancedSetter(!advancedVisible)}
                                 >
-                                    {advancedVisible ? 'Discard' : 'Show'} Advanced
+                                    {advancedVisible ? 'Skjul' : 'Vis'} Avanceret
                                     {advancedVisible
                                         ? <ChevronUpIcon className="size-4 ml-1.5" />
                                         : <ChevronDownIcon className="size-4 ml-1.5" />}
