@@ -32,17 +32,17 @@ const allRoutes: RouteType[] = [
     //Global Routes
     {
         path: '/players',
-        title: 'Players',
+        title: 'Spillere',
         Page: <PlayersPage />
     },
     {
         path: '/history',
-        title: 'History',
+        title: 'Historik',
         Page: <HistoryPage />
     },
     {
         path: '/insights/player-drops',
-        title: 'Player Drops',
+        title: 'Spiller drops',
         Page: <PlayerDropsPage />
     },
     {
@@ -52,35 +52,35 @@ const allRoutes: RouteType[] = [
     },
     {
         path: '/admins',
-        title: 'Admins',
+        title: 'Administratore',
         Page: <Iframe legacyUrl="adminManager" />
     },
     {
         path: '/settings',
-        title: 'Settings',
+        title: 'Indstillinger',
         permission: 'settings.view',
         Page: <SettingsPage />
     },
     {
         path: '/system/master-actions',
-        title: 'Master Actions',
+        title: 'Master Handlinger',
         //NOTE: content is readonly for unauthorized accounts
         Page: <Iframe legacyUrl="masterActions" />
     },
     {
         path: '/system/diagnostics',
-        title: 'Diagnostics',
+        title: 'Diagnostik',
         Page: <Iframe legacyUrl="diagnostics" />
     },
     {
         path: '/system/console-log',
-        title: 'Console Log',
+        title: 'Konsol Log',
         permission: 'txadmin.log.view',
         Page: <SystemLogPage pageName="console" />
     },
     {
         path: '/system/action-log',
-        title: 'Action Log',
+        title: 'Handlings Log',
         permission: 'txadmin.log.view',
         Page: <SystemLogPage pageName="action" />
     },
@@ -88,18 +88,18 @@ const allRoutes: RouteType[] = [
     //Server Routes
     {
         path: '/',
-        title: 'Dashboard',
+        title: 'Forside',
         Page: <DashboardPage />
     },
     {
         path: '/server/console',
-        title: 'Live Console',
+        title: 'Live Konsol',
         permission: 'console.view',
         Page: <LiveConsolePage />
     },
     {
         path: '/server/resources',
-        title: 'Resources',
+        title: 'Ressourcer',
         Page: <Iframe legacyUrl="resources" />
     },
     {
@@ -116,19 +116,19 @@ const allRoutes: RouteType[] = [
     },
     {
         path: '/server/setup',
-        title: 'Server Setup',
+        title: 'Server Opsætning',
         permission: 'master', //FIXME: eithger change to all_permissions or create a new Setup/Deploy permission
         Page: <Iframe legacyUrl="setup" />
     },
     {
         path: '/server/deployer',
-        title: 'Server Deployer',
+        title: 'Server Installation',
         permission: 'master', //FIXME: eithger change to all_permissions or create a new Setup/Deploy permission
         Page: <Iframe legacyUrl="deployer" />
     },
     {
         path: '/advanced',
-        title: 'Advanced',
+        title: 'Avanceret',
         permission: 'all_permissions',
         Page: <Iframe legacyUrl="advanced" />
     },
@@ -136,13 +136,13 @@ const allRoutes: RouteType[] = [
     //No nav routes
     {
         path: '/settings/ban-templates',
-        title: 'Ban Templates',
+        title: 'Udelukkelses skabeloner',
         //NOTE: content is readonly for unauthorized accounts
         Page: <BanTemplatesPage />
     },
     {
         path: '/ban-identifiers',
-        title: 'Ban Identifiers',
+        title: 'Udelukkelses identifikatore',
         Page: <AddLegacyBanPage />
     },
     //FIXME: decide on how to organize the url for the player drops page - /server/ prefix?
