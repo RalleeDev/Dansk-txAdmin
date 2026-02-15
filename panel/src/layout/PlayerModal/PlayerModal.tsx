@@ -23,18 +23,22 @@ import ModalCentralMessage from "@/components/ModalCentralMessage";
 const modalTabs = [
     {
         title: 'Info',
+        label: 'Info',
         icon: <InfoIcon className="mr-2 h-5 w-5 hidden xs:block" />,
     },
     {
         title: 'History',
+        label: 'Historik',
         icon: <HistoryIcon className="mr-2 h-5 w-5 hidden xs:block" />,
     },
     {
         title: 'IDs',
+        label: 'IDs',
         icon: <ListIcon className="mr-2 h-5 w-5 hidden xs:block" />,
     },
     {
         title: 'Ban',
+        label: 'Udeluk',
         icon: <GavelIcon className="mr-2 h-5 w-5 hidden xs:block" />,
         className: 'hover:bg-destructive hover:text-destructive-foreground',
     }
@@ -125,14 +129,14 @@ export default function PlayerModal() {
             </>;
         } else {
             pageTitle = <>
-                <span className="text-destructive-inline font-mono mr-2">[OFF]</span>
+                <span className="text-destructive-inline font-mono mr-2">[SLUKKET]</span>
                 {modalData.player.displayName}
             </>;
         }
     } else if (modalError) {
-        pageTitle = <span className="text-destructive-inline">Error!</span>;
+        pageTitle = <span className="text-destructive-inline">Fejl!</span>;
     } else {
-        pageTitle = <span className="text-muted-foreground italic">Loading...</span>;
+        pageTitle = <span className="text-muted-foreground italic">Indlæser...</span>;
     }
 
     return (
@@ -163,7 +167,7 @@ export default function PlayerModal() {
                                 onClick={() => setSelectedTab(tab.title)}
                                 onKeyDown={handleTabButtonKeyDown}
                             >
-                                {tab.icon} {tab.title}
+                                {tab.icon} {tab.label ?? tab.title}
                             </Button>
                         ))}
                     </div>
@@ -173,9 +177,9 @@ export default function PlayerModal() {
                         {!modalData ? (
                             <ModalCentralMessage>
                                 {modalError ? (
-                                    <span className="text-destructive-inline">Error: {modalError}</span>
+                                    <span className="text-destructive-inline">Fejl: {modalError}</span>
                                 ) : (
-                                    <GenericSpinner msg="Loading..." />
+                                    <GenericSpinner msg="Indlæser..." />
                                 )}
                             </ModalCentralMessage>
                         ) : (

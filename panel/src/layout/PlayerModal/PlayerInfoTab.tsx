@@ -81,7 +81,7 @@ function PlayerNotesBox({ playerRef, player, refreshModalData }: PlayerNotesBoxP
 
     return <>
         <Label htmlFor="playerNotes">
-            Notes: <span className="text-muted-foreground">{notesLogText}</span>
+            Noter: <span className="text-muted-foreground">{notesLogText}</span>
         </Label>
         <Textarea
             ref={textAreaRef}
@@ -89,13 +89,13 @@ function PlayerNotesBox({ playerRef, player, refreshModalData }: PlayerNotesBoxP
             className="w-full mt-1"
             disabled={!player.isRegistered}
             defaultValue={player.notes}
-            onChange={() => setNotesLogText('Press enter to save.')}
+            onChange={() => setNotesLogText('Tryk enter for at gemme.')}
             onKeyDown={handleKeyDown}
             //1rem of padding + 1.25rem per line
             style={{ height: `${1 + 1.25 * textAreaLines}rem` }}
             placeholder={player.isRegistered
-                ? 'Type your notes about the player.'
-                : 'Cannot set notes for players that are not registered.'}
+                ? 'Skriv dine noter omkring spilleren.'
+                : 'Kan ikke gemme noter for spillere der ikke er registreret.'}
         />
         {window.txIsMobile && <div className="mt-2 w-full">
             <Button
@@ -104,7 +104,7 @@ function PlayerNotesBox({ playerRef, player, refreshModalData }: PlayerNotesBoxP
                 onClick={doSaveNotes}
                 disabled={!player.isRegistered}
                 className="w-full"
-            >Save Note</Button>
+            >Gem Note</Button>
         </div>}
     </>
 }
@@ -164,9 +164,9 @@ export default function PlayerInfoTab({ playerRef, player, serverTime, tsFetch, 
             data: {
                 status: !player.tsWhitelisted
             },
-            toastLoadingMessage: 'Updating whitelist...',
+            toastLoadingMessage: 'Opdatterer whitelist...',
             genericHandler: {
-                successMsg: 'Whitelist changed.',
+                successMsg: 'Whitelist ændret.',
             },
             success: (data, toastId) => {
                 if ('success' in data) {
@@ -186,13 +186,13 @@ export default function PlayerInfoTab({ playerRef, player, serverTime, tsFetch, 
                     banExpiration = Math.max(banExpiration ?? 0, action.exp);
                 }
             } else {
-                return 'This player is permanently banned.';
+                return 'Denne spiller er permanent udelukket.';
             }
         }
 
         if (banExpiration !== undefined) {
             const str = tsToLocaleDateTimeString(banExpiration, 'short', 'short');
-            return `This player is banned until ${str}`;
+            return `Denne spiller er udelukket indtil den ${str}`;
         }
     }, [player, serverTime]);
 
@@ -209,19 +209,19 @@ export default function PlayerInfoTab({ playerRef, player, serverTime, tsFetch, 
         ) : null}
         <dl className="pb-2">
             {player.isConnected && <div className="py-0.5 grid grid-cols-3 gap-4 px-0">
-                <dt className="text-sm font-medium leading-6 text-muted-foreground">Session Time</dt>
+                <dt className="text-sm font-medium leading-6 text-muted-foreground">Sessions Tid</dt>
                 <dd className="text-sm leading-6 col-span-2 mt-0">{sessionTimeText}</dd>
             </div>}
             <div className="py-0.5 grid grid-cols-3 gap-4 px-0">
-                <dt className="text-sm font-medium leading-6 text-muted-foreground">Play Time</dt>
+                <dt className="text-sm font-medium leading-6 text-muted-foreground">Spille tdi</dt>
                 <dd className="text-sm leading-6 col-span-2 mt-0">{playTimeText}</dd>
             </div>
             <div className="py-0.5 grid grid-cols-3 gap-4 px-0">
-                <dt className="text-sm font-medium leading-6 text-muted-foreground">Join Date</dt>
+                <dt className="text-sm font-medium leading-6 text-muted-foreground">Tilmeldings Dato</dt>
                 <dd className="text-sm leading-6 col-span-2 mt-0">{joinDateText}</dd>
             </div>
             {!player.isConnected && <div className="py-0.5 grid grid-cols-3 gap-4 px-0">
-                <dt className="text-sm font-medium leading-6 text-muted-foreground">Last Connection</dt>
+                <dt className="text-sm font-medium leading-6 text-muted-foreground">Sidste forbindelse</dt>
                 <dd className="text-sm leading-6 col-span-2 mt-0">{lastConnectionText}</dd>
             </div>}
 
@@ -236,12 +236,12 @@ export default function PlayerInfoTab({ playerRef, player, serverTime, tsFetch, 
                         onClick={handleWhitelistClick}
                         disabled={!hasPerm('players.whitelist')}
                     >
-                        {player.tsWhitelisted ? 'Remove' : 'Add WL'}
+                        {player.tsWhitelisted ? 'Fjern' : 'Tilføj WL'}
                     </Button>
                 </dd>
             </div>
             <div className="py-0.5 grid grid-cols-3 gap-4 px-0">
-                <dt className="text-sm font-medium leading-6 text-muted-foreground">Sanctions</dt>
+                <dt className="text-sm font-medium leading-6 text-muted-foreground">Sanktioner</dt>
                 <dd className="text-sm leading-6 mt-0 flex flex-wrap gap-2">
                     <LogActionCounter type="Ban" count={banCount} />
                     <LogActionCounter type="Warn" count={warnCount} />
@@ -252,7 +252,7 @@ export default function PlayerInfoTab({ playerRef, player, serverTime, tsFetch, 
                         size='inline'
                         style={{ minWidth: '8.25ch' }}
                         onClick={() => { setSelectedTab('History') }}
-                    >View</Button>
+                    >Se</Button>
                 </dd>
             </div>
         </dl>

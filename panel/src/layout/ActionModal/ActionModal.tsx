@@ -113,24 +113,24 @@ export default function ActionModal() {
     if (modalData) {
         const displayName = modalData.action.playerName !== false
             ? <span>{modalData.action.playerName}</span>
-            : <span className="italic opacity-75">unknown player</span>;
+            : <span className="italic opacity-75">Ukendt Spiller</span>;
         if (modalData.action.type === 'ban') {
             pageTitle = <>
                 <span className="text-destructive-inline font-mono mr-2">[{modalData.action.id}]</span>
-                Banned {displayName}
+                Udelukkede {displayName}
             </>;
         } else if (modalData.action.type === 'warn') {
             pageTitle = <>
                 <span className="text-warning-inline font-mono mr-2">[{modalData.action.id}]</span>
-                Warned {displayName}
+                Advarede {displayName}
             </>;
         } else {
             throw new Error(`Unknown action type: ${modalData.action.type}`);
         }
     } else if (modalError) {
-        pageTitle = <span className="text-destructive-inline">Error!</span>;
+        pageTitle = <span className="text-destructive-inline">Fejl!</span>;
     } else {
-        pageTitle = <span className="text-muted-foreground italic">Loading...</span>;
+        pageTitle = <span className="text-muted-foreground italic">Indlæser...</span>;
     }
 
     return (
@@ -172,7 +172,7 @@ export default function ActionModal() {
                         {!modalData ? (
                             <ModalCentralMessage>
                                 {modalError ? (
-                                    <span className="text-destructive-inline">Error: {modalError}</span>
+                                    <span className="text-destructive-inline">Fejl: {modalError}</span>
                                 ) : (
                                     <GenericSpinner msg="Loading..." />
                                 )}

@@ -29,7 +29,7 @@ export default function PlayerBanTab({ playerRef, banTemplates }: PlayerBanTabPr
 
     if (!hasPerm('players.ban')) {
         return <ModalCentralMessage>
-            You don't have permission to ban players.
+            Du har ikke tilladelse til at udelukke andre spillere.
         </ModalCentralMessage>;
     }
 
@@ -38,7 +38,7 @@ export default function PlayerBanTab({ playerRef, banTemplates }: PlayerBanTabPr
         const { reason, duration } = banFormRef.current.getData();
 
         if (!reason || reason.length < 3) {
-            txToast.warning(`The reason must be at least 3 characters long.`);
+            txToast.warning(`Grunden skal mindt være 3 karakter lang.`);
             banFormRef.current.focusReason();
             return;
         }
@@ -47,9 +47,9 @@ export default function PlayerBanTab({ playerRef, banTemplates }: PlayerBanTabPr
         playerBanApi({
             queryParams: playerRef,
             data: {reason, duration},
-            toastLoadingMessage: 'Banning player...',
+            toastLoadingMessage: 'Udelukker spiller...',
             genericHandler: {
-                successMsg: 'Player banned.',
+                successMsg: 'Spiller Udelukket.',
             },
             success: (data) => {
                 setIsSaving(false);
@@ -78,9 +78,9 @@ export default function PlayerBanTab({ playerRef, banTemplates }: PlayerBanTabPr
                 >
                     {isSaving ? (
                         <span className="flex items-center leading-relaxed">
-                            <Loader2Icon className="inline animate-spin h-4" /> Banning...
+                            <Loader2Icon className="inline animate-spin h-4" /> Udelukker...
                         </span>
-                    ) : 'Apply Ban'}
+                    ) : 'Anvend Udelukkelse'}
                 </Button>
             </div>
         </div>

@@ -26,9 +26,9 @@ export default function ActionModifyTab({ action, refreshModalData }: ActionModi
         setIsRevoking(true);
         revokeActionApi({
             data: { actionId: action.id },
-            toastLoadingMessage: `Revoking ${action.type}...`,
+            toastLoadingMessage: `Ophæver ${action.type}...`,
             genericHandler: {
-                successMsg: `${upperCasedType} revoked.`,
+                successMsg: `${upperCasedType} Ophævet.`,
             },
             success: (data) => {
                 setIsRevoking(false);
@@ -42,21 +42,21 @@ export default function ActionModifyTab({ action, refreshModalData }: ActionModi
     const isAlreadyRevoked = !!action.revocation.timestamp;
     const hasRevokePerm = hasPerm(action.type === 'warn' ? 'players.warn' : 'players.ban');
     const revokeBtnLabel = isAlreadyRevoked
-        ? `${action.type} revoked`
+        ? `${action.type} ophævet`
         : hasRevokePerm
-            ? `Revoke ${upperCasedType}`
-            : 'Revoke (no permission)';
+            ? `Ophøv ${upperCasedType}`
+            : 'Ophæv (ingen tilladelse)';
     return (
         <div className="flex flex-col gap-4 px-1 mb-1 md:mb-4">
             <div className="space-y-2">
-                <h3 className="text-xl">Revoke {upperCasedType}</h3>
+                <h3 className="text-xl">Ophæv {upperCasedType}</h3>
                 <p className="text-muted-foreground text-sm">
-                    This is generally done when the player successfully appeals the {action.type} or the admin regrets issuing it.
+                    Dette sker generelt når en spiller får en chance til {action.type} eller administratoren glemmer at fikse.
                     <ul className="list-disc list-inside pt-1">
-                        {action.type === 'ban' && <li>The player will be able to rejoin the server.</li>}
-                        <li>The player will not be notified of the revocation.</li>
-                        <li>This {action.type} will not be removed from the player history.</li>
-                        <li>The revocation cannot be undone!</li>
+                        {action.type === 'ban' && <li>Spilleren ville have mulighed for at forbinde igen.</li>}
+                        <li>Spilleren vil ikke blive notificeret om ophævningen</li>
+                        <li>Denne {action.type} vil ikke blive fjernet fra spillerens historik.</li>
+                        <li>Ophævelsen kan ikke refunderes!</li>
                     </ul>
                 </p>
 
@@ -70,7 +70,7 @@ export default function ActionModifyTab({ action, refreshModalData }: ActionModi
                 >
                     {isRevoking ? (
                         <span className="flex items-center leading-relaxed">
-                            <Loader2Icon className="inline animate-spin h-4" /> Revoking...
+                            <Loader2Icon className="inline animate-spin h-4" /> Ophæver...
                         </span>
                     ) : revokeBtnLabel}
                 </Button>

@@ -70,17 +70,17 @@ export default function PlayerModalFooter({ playerRef, player }: PlayerModalFoot
     const handleDm = () => {
         if (!player) return;
         openPromptDialog({
-            title: `Direct Message ${player.displayName}`,
-            message: 'Type direct message below',
-            placeholder: 'whatever you wanna say',
+            title: `Direkte besked til ${player.displayName}`,
+            message: 'Skriv beskeden nedenunder',
+            placeholder: 'Hvad end du vil sige',
             submitLabel: 'Send',
             required: true,
             onSubmit: (input) => {
                 playerMessageApi({
                     queryParams: playerRef,
                     data: { message: input },
-                    genericHandler: { successMsg: 'Direct message sent.' },
-                    toastLoadingMessage: 'Sending direct message...',
+                    genericHandler: { successMsg: 'Direkte besked sendt.' },
+                    toastLoadingMessage: 'Sender direkte besked...',
                     success: closeOnSuccess,
                 });
             }
@@ -90,16 +90,16 @@ export default function PlayerModalFooter({ playerRef, player }: PlayerModalFoot
     const handleKick = () => {
         if (!player) return;
         openPromptDialog({
-            title: `Kick ${player.displayName}`,
-            message: 'Type the kick reason or leave it blank (press enter)',
-            placeholder: 'any reason you want',
-            submitLabel: 'Send',
+            title: `Smid ${player.displayName} ud`,
+            message: 'Skriv begrundelsen eller efterlad tom (tryk enter)',
+            placeholder: 'enhver grund du ønsker',
+            submitLabel: 'Smid ud',
             onSubmit: (input) => {
                 playerKickApi({
                     queryParams: playerRef,
                     data: { reason: input },
-                    genericHandler: { successMsg: 'Player kicked.' },
-                    toastLoadingMessage: 'Kicking player...',
+                    genericHandler: { successMsg: 'Spiller smidt ud.' },
+                    toastLoadingMessage: 'Smider spiller ud...',
                     success: closeOnSuccess,
                 });
             }
@@ -109,20 +109,20 @@ export default function PlayerModalFooter({ playerRef, player }: PlayerModalFoot
     const handleWarn = () => {
         if (!player) return;
         openPromptDialog({
-            title: `Warn ${player.displayName}`,
+            title: `Advar ${player.displayName}`,
             message: <p>
-                Type below the warn reason. <br />
-                Offline players will receive  the warning when they come back online.
+                Skriv din begrundelse nedenunder. <br />
+                Offline spillere ville modtage advarslen når de forbinder igen.
             </p>,
-            placeholder: 'The reason for the warn, rule violated, etc.',
-            submitLabel: 'Send',
+            placeholder: 'Begrundelsen for advarslen, brudt en regel, osv.',
+            submitLabel: 'Advar',
             required: true,
             onSubmit: (input) => {
                 playerWarnApi({
                     queryParams: playerRef,
                     data: { reason: input },
-                    genericHandler: { successMsg: 'Warning sent.' },
-                    toastLoadingMessage: 'Sending warning...',
+                    genericHandler: { successMsg: 'Advarsel sendt.' },
+                    toastLoadingMessage: 'Sender Advarsel...',
                     success: closeOnSuccess,
                 });
             }
@@ -138,7 +138,7 @@ export default function PlayerModalFooter({ playerRef, player }: PlayerModalFoot
                 onClick={handleGiveAdmin}
                 className="pl-2 sm:mr-auto"
             >
-                <ShieldCheckIcon className="h-5 mr-1" /> Give Admin
+                <ShieldCheckIcon className="h-5 mr-1" /> Giv Admin
             </Button>
             <Button
                 variant='outline'
@@ -161,7 +161,7 @@ export default function PlayerModalFooter({ playerRef, player }: PlayerModalFoot
                     width: '1.75rem',
                     marginRight: '0.25rem',
                     fill: 'currentcolor'
-                }} /> Kick
+                }} /> Smid ud
             </Button>
             <Button
                 variant='outline'
@@ -170,7 +170,7 @@ export default function PlayerModalFooter({ playerRef, player }: PlayerModalFoot
                 onClick={handleWarn}
                 className="pl-2"
             >
-                <AlertTriangleIcon className="h-5 mr-1" /> Warn
+                <AlertTriangleIcon className="h-5 mr-1" /> Advar
             </Button>
         </DialogFooter>
     )

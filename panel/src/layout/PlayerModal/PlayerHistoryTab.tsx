@@ -16,18 +16,18 @@ function HistoryItem({ action, serverTime, modalOpener }: HistoryItemProps) {
     let footerNote, borderColorClass, actionMessage;
     if (action.type === 'ban') {
         borderColorClass = 'border-destructive';
-        actionMessage = `BANNED by ${action.author}`;
+        actionMessage = `UDELUKKET af ${action.author}`;
     } else if (action.type === 'warn') {
         borderColorClass = 'border-warning';
-        actionMessage = `WARNED by ${action.author}`;
+        actionMessage = `ADVARET af ${action.author}`;
     }
     if (action.revokedBy) {
         borderColorClass = '';
         const revocationDate = tsToLocaleDateTimeString(action.revokedAt ?? 0, 'medium', 'short');
-        footerNote = `Revoked by ${action.revokedBy} on ${revocationDate}.`;
+        footerNote = `Ophævet af ${action.revokedBy} på tidspunktet ${revocationDate}.`;
     } else if (typeof action.exp === 'number') {
         const expirationDate = tsToLocaleDateTimeString(action.exp, 'medium', 'short');
-        footerNote = (action.exp < serverTime) ? `Expired on ${expirationDate}.` : `Expires in ${expirationDate}.`;
+        footerNote = (action.exp < serverTime) ? `Udløbet den ${expirationDate}.` : `Udløber om ${expirationDate}.`;
     }
 
     return (
@@ -68,7 +68,7 @@ export default function PlayerHistoryTab({ actionHistory, serverTime, refreshMod
 
     if (!actionHistory.length) {
         return <ModalCentralMessage>
-            No bans/warns found.
+            Ingen Udelukkelser/Advarsler fundet.
         </ModalCentralMessage>;
     }
 
