@@ -74,7 +74,7 @@ function RegisterForm({ fivemId, fivemName, profilePicture }: ApiAddMasterCallba
                 discordRef.current!.value = discordInput;
             }
             if (!consts.validIdentifierParts.discord.test(discordInput)) {
-                setErrorMessage('The Discord ID needs to be the numeric "User ID" instead of the username.\n You can also leave it blank.');
+                setErrorMessage('Discord-IDet skal være det numeriske "bruger-ID" i stedet for brugernavnet..\n Du kan også efterlade det blank.');
                 return;
             }
             discordId = discordInput;
@@ -82,7 +82,7 @@ function RegisterForm({ fivemId, fivemName, profilePicture }: ApiAddMasterCallba
 
         // @ts-ignore - Check terms
         if (termsRef.current?.value !== 'on') {
-            setErrorMessage('You MUST agree to the terms.');
+            setErrorMessage('Du SKAL acceptere betingelserne.');
             return;
         }
 
@@ -90,10 +90,10 @@ function RegisterForm({ fivemId, fivemName, profilePicture }: ApiAddMasterCallba
         const password = passwordRef.current?.value || '';
         const password2 = password2Ref.current?.value || '';
         if (password.length < consts.adminPasswordMinLength || password.length > consts.adminPasswordMaxLength) {
-            setErrorMessage(`The password must be between ${consts.adminPasswordMinLength} and ${consts.adminPasswordMaxLength} characters long.`);
+            setErrorMessage(`Kodeordet skal være imellem ${consts.adminPasswordMinLength} og ${consts.adminPasswordMaxLength} karakter lang.`);
             return;
         } else if (password !== password2) {
-            setErrorMessage('The passwords do not match.');
+            setErrorMessage('kodeordene matcher ikke.');
             return;
         }
 
@@ -122,7 +122,7 @@ function RegisterForm({ fivemId, fivemName, profilePicture }: ApiAddMasterCallba
     return <form onSubmit={handleSubmit} className='w-full text-left'>
         <CardContent className="pt-6 flex flex-col gap-4">
             <div>
-                Cfx.re account
+                Cfx.re konto
                 <div className="rounded-md border bg-zinc-100 dark:bg-zinc-900 p-2 mt-2 flex flex-row justify-start items-center">
                     <Avatar
                         className="h-16 w-16 text-3xl"
@@ -140,7 +140,7 @@ function RegisterForm({ fivemId, fivemName, profilePicture }: ApiAddMasterCallba
             <div className="grid gap-2">
                 <div className="flex flex-row justify-between items-center">
                     <Label htmlFor="frm-discord">Discord ID</Label>
-                    <span className="text-muted-foreground text-xs">(optional)</span>
+                    <span className="text-muted-foreground text-xs">(valgfrit)</span>
                 </div>
                 <Input
                     className="dark:placeholder:text-zinc-800"
@@ -150,22 +150,22 @@ function RegisterForm({ fivemId, fivemName, profilePicture }: ApiAddMasterCallba
             </div>
             <div className="grid gap-2">
                 <div className="flex flex-row justify-between items-center">
-                    <Label htmlFor="frm-password">Backup Password</Label>
+                    <Label htmlFor="frm-password">Backup kodeord</Label>
                     <span className="text-muted-foreground text-xs">({consts.adminPasswordMinLength}~{consts.adminPasswordMaxLength} digits)</span>
                 </div>
                 <Input
                     className="dark:placeholder:text-zinc-800"
                     id="frm-password" type="password" ref={passwordRef}
-                    placeholder='password' disabled={isSaving}
+                    placeholder='kodeord' disabled={isSaving}
                     required
                 />
             </div>
             <div className="grid gap-2">
-                <Label htmlFor="frm-password2">Confirm Password</Label>
+                <Label htmlFor="frm-password2">Bekræt Kodeord</Label>
                 <Input
                     className="dark:placeholder:text-zinc-800"
                     id="frm-password2" type="password" ref={password2Ref}
-                    placeholder='password' disabled={isSaving}
+                    placeholder='kodeord' disabled={isSaving}
                     required
                 />
             </div>
@@ -176,7 +176,7 @@ function RegisterForm({ fivemId, fivemName, profilePicture }: ApiAddMasterCallba
                     htmlFor="terms"
                     className="text-sm font-medium leading-4 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
-                    I have read and agree to the <a href="https://fivem.net/terms" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Creator PLA</a> as well as the <a href="https://github.com/tabarra/txAdmin/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">txAdmin License</a>.
+                    Jeg har læst og accepterer <a href="https://fivem.net/terms" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Creator PLA</a> samt <a href="https://github.com/tabarra/txAdmin/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">txAdmin Licensen</a>.
                 </label>
             </div>
         </CardContent>
@@ -186,7 +186,7 @@ function RegisterForm({ fivemId, fivemName, profilePicture }: ApiAddMasterCallba
             </span>
             <Button className="w-full" disabled={isSaving}>
                 {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Register
+                Registrer
             </Button>
         </CardFooter>
     </form>
@@ -239,7 +239,7 @@ export default function AddMasterCallback() {
     } else if (errorData) {
         return <AuthError error={{...errorData, returnTo: "/addMaster/pin"}} />
     } else if (isFetching) {
-        return <GenericSpinner msg="Authenticating..." />;
+        return <GenericSpinner msg="Bekræfter..." />;
     } else {
         return <GenericSpinner />
     }

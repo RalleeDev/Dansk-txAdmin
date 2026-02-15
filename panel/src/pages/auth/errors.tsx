@@ -32,48 +32,48 @@ export function AuthError({ error }: AuthErrorProps) {
         titleNode = error.errorTitle
         bodyNode = <ErrorText>{error.errorMessage}</ErrorText>;
     } else if (error.errorCode === 'invalid_session') {
-        titleNode = 'Invalid Browser Session.';
+        titleNode = 'Ugyldig Browser Session.';
         bodyNode = <ErrorText>
-            You may have restarted txAdmin right before entering this page. <br />
-            Please return and try again.
+            Du har måske genstartet txAdmin lige før du indlæste denne side. <br />
+            Returnér venligst og prøv igen.
         </ErrorText>
     } else if (error.errorCode === 'clock_desync') {
-        titleNode = 'Please Update/Synchronize your VPS clock.';
+        titleNode = 'Opdater/Synkronisere venligst dit ur.';
         bodyNode = <ErrorText>
-            Failed to login because this host's time is wrong. Please make sure to synchronize it with the internet.
+            Login fejlede fordi host-maskinens ur er forkert. Synkronisere venligst dit ur med internettet.
         </ErrorText>
     } else if (error.errorCode === 'timeout') {
-        titleNode = 'Connection to FiveM servers timed out.';
+        titleNode = 'Forbindelsen til FiveMs servere løb ud.';
         bodyNode = <ErrorText>
-            Please try again or login using your existing username and backup password.
+            Prøv venligst igen eller login ved hjælp af dit eksisterende brugernavn og backup kodeord.
         </ErrorText>
     } else if (error.errorCode === 'end_user_aborted') {
-        titleNode = 'Login Aborted';
+        titleNode = 'Login Afbrudt';
         bodyNode = <ErrorText>
-            The Cfx.re login process was aborted. <br />
-            Return to the login page to try again.
+            Cfx.re login processen var afbrudt. <br />
+            Returnér til login siden og prøv igen.
         </ErrorText>
     } else if (error.errorCode === 'end_user_logout') {
         titleNode = 'Login Aborted';
         bodyNode = <ErrorText>
-            The Cfx.re login process was aborted because you logged out of the Cfx.re account. <br />
-            Return to the login page to try again.
+            Cfx.re login processen var afbrudt fordi du afmeldte din Cfx.re konto. <br />
+            Returnér til login siden og prøv igen.
         </ErrorText>
     } else if (error.errorCode === 'master_already_set') {
-        titleNode = 'Master Account Already Set';
+        titleNode = 'Master Konto alleredet sat op';
         bodyNode = <ErrorText>
-            Please go back to the login page to continue. <br />
+            Gå venligst tilbage til login siden og log in. <br />
         </ErrorText>
     } else if (error.errorCode === 'not_admin') {
-        const fivemId = error.errorContext?.identifier ?? 'unknown';
-        const fivemName = error.errorContext?.name ?? 'unknown';
-        titleNode = `The Cfx.re account '${fivemName}' is not an admin.`;
+        const fivemId = error.errorContext?.identifier ?? 'Ukendt';
+        const fivemName = error.errorContext?.name ?? 'Ukendt';
+        titleNode = `Cfx.re kontoen '${fivemName}' er ikke en admin.`;
         bodyNode = <ErrorText>
-            The account above with identifier <InlineCode>{fivemId}</InlineCode> is not assigned to any account registered on txAdmin. <br />
-            You can also try to login using your username and backup password.
+            Kontoen ovenover med idenfikatoren <InlineCode>{fivemId}</InlineCode> er ikke tildelt nogen konto, der er registreret på txAdmin. <br />
+            Du kan også prøve at logge ind med dit brugernavn og backup kodeord.
         </ErrorText>
     } else {
-        titleNode = 'Unknown Error:';
+        titleNode = 'Ukendt Fejl:';
         bodyNode = <div className="text-left rounded-sm text-muted-foreground bg-muted p-1">
             <pre className="text-left whitespace-pre-wrap">{JSON.stringify(error, null, 2)}</pre>
         </div>
@@ -89,7 +89,7 @@ export function AuthError({ error }: AuthErrorProps) {
                 <Link href={error.returnTo} asChild>
                     <Button className="x">
                         <ArrowLeftIcon className="inline mr-2 h-4 w-4" />
-                        Try Again
+                        Prøv igen
                     </Button>
                 </Link>
             </CardFooter>
@@ -119,12 +119,12 @@ export const checkCommonOauthErrors = () => {
 export const processFetchError = (error: any) => {
     if (error.message?.startsWith('NetworkError')) {
         return {
-            errorTitle: 'Network Error',
-            errorMessage: 'If you closed txAdmin, please restart it and try again.',
+            errorTitle: 'Netværks fejl',
+            errorMessage: 'Hvis du lukkede txAdmin, Genstart det venligst og prøv igen.',
         };
     } else {
         return {
-            errorTitle: 'Unknown Error',
+            errorTitle: 'Ukendt fejl',
             errorMessage: error.message ?? '😵',
         };
     }

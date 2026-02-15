@@ -21,12 +21,12 @@ function HeaderNoServer() {
                 {/* Unconfigured Server */}
                 {/* Server Not Configured */}
                 {/* Server Not Yet Configured */}
-                Welcome to txAdmin!
+                Velkommen til txAdmin!
             </div>
             <div className="text-sm xs:text-base font-normal tracking-wide text-muted-foreground">
                 {/* please login to set it up */}
                 {/* login to configure it */}
-                please login to continue
+                Log venligst ind for at fortsætte
             </div>
         </div>
     )
@@ -48,7 +48,7 @@ function HeaderServerInfo() {
                 {server.name}
             </div>
             <div className="text-sm xs:text-base text-muted-foreground">
-                Login to continue
+                Login for at fortsætte
             </div>
         </div>
     </>)
@@ -186,13 +186,13 @@ export default function Login() {
                 {/* Form */}
                 <div className="flex flex-col xs:grid grid-cols-8 gap-2 xs:gap-4 items-baseline">
                     <Label className="col-span-2" htmlFor="frm-login">
-                        Username
+                        Brugernavn
                     </Label>
                     <Input
                         id="frm-login"
                         ref={usernameRef}
                         type="text"
-                        placeholder="username"
+                        placeholder="brugernavn"
                         autoCapitalize='off'
                         autoComplete='off'
                         className="col-span-6"
@@ -201,13 +201,13 @@ export default function Login() {
                 </div>
                 <div className="flex flex-col xs:grid grid-cols-8 gap-2 xs:gap-4 items-baseline">
                     <Label className="col-span-2" htmlFor="frm-password">
-                        Password
+                        Kodeord
                     </Label>
                     <Input
                         id="frm-password"
                         ref={passwordRef}
                         type="password"
-                        placeholder='password'
+                        placeholder='kodeord'
                         autoCapitalize='off'
                         autoComplete='off'
                         className="col-span-6"
@@ -233,7 +233,7 @@ export default function Login() {
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     ) : (
                         <LogInIcon className="inline mr-2 h-4 w-4" />
-                    )} Login with Cfx.re
+                    )} Login med Cfx.re
                 </Button>
             </CardContent>
         </form>
