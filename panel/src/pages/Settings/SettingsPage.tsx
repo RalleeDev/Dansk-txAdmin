@@ -27,16 +27,17 @@ import { PageHeader, PageHeaderChangelog } from "@/components/page-header";
 
 //Tab configuration
 const settingsTabsBase = [
-    { name: 'Generelt', Component: ConfigCardGeneral }, //TODO: cards [Server Listing, txAdmin]
-    { name: 'FXServer', Component: ConfigCardFxserver },
-    { name: 'Udelukkelser', Component: ConfigCardBans },
-    { name: 'Whitelist', Component: ConfigCardWhitelist },
-    { name: 'Discord', Component: ConfigCardDiscord },
+    { name: 'General', label: 'Generelt', Component: ConfigCardGeneral }, //TODO: cards [Server Listing, txAdmin]
+    { name: 'FXServer', label: 'FXSERVER', Component: ConfigCardFxserver },
+    { name: 'Bans', label: 'Udelukkelser', Component: ConfigCardBans },
+    { name: 'Whitelist', label: 'Whitelist', Component: ConfigCardWhitelist },
+    { name: 'Discord', label: 'Discord ', Component: ConfigCardDiscord },
     {
-        name: 'Spil',
+        name: 'Game',
+        label: 'Spil',
         cards: [
-            { name: 'Menu', Component: ConfigCardGameMenu },
-            { name: 'Notifikationer', Component: ConfigCardGameNotifications },
+            { name: 'Menu', label: 'Menu', Component: ConfigCardGameMenu },
+            { name: 'Notifications', label: 'Notifikations', Component: ConfigCardGameNotifications },
         ]
     },
     //Dev only
@@ -63,7 +64,7 @@ const nameToId = (name: string) => name.toLowerCase().replace(/[^a-z0-9]/g, '-')
 export const settingsTabs: SettingTabsDatum[] = settingsTabsBase.map((tab) => {
     const tabCtx = {
         tabId: nameToId(tab.name),
-        tabName: tab.name,
+        tabName: tab.label ?? tab.name,
     } satisfies SettingsTabInfo;
     if ('cards' in tab && tab.cards) {
         return {
@@ -72,7 +73,7 @@ export const settingsTabs: SettingTabsDatum[] = settingsTabsBase.map((tab) => {
                 ctx: {
                     ...tabCtx,
                     cardId: `${tabCtx.tabId}-${nameToId(card.name)}`,
-                    cardName: card.name,
+                    cardName: card.label,
                     cardTitle: `${tabCtx.tabName} ${card.name}`,
                 },
                 Component: card.Component,
