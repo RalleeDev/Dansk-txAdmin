@@ -55,7 +55,7 @@ function PlayerlistFilter({ filterString, setFilterString }: PlayerlistFilterPro
                 <Input
                     ref={inputRef}
                     className="h-8"
-                    placeholder="Filter by Name or ID"
+                    placeholder="Filtrer efter Navn eller ID"
                     value={filterString}
                     onChange={(e) => setFilterString(e.target.value)}
                     onKeyDown={(e) => {
@@ -225,7 +225,7 @@ export default function Playerlist() {
                     filteredPlayerlist.length !== playerlist.length && virtualItems.length ? 'block' : 'hidden'
                 )}
             >
-                Showing {filteredPlayerlist.length} of {playerlist.length} players.
+                Viser {filteredPlayerlist.length} ud af {playerlist.length} spillere.
             </div>
             <div
                 className={cn(
@@ -235,13 +235,13 @@ export default function Playerlist() {
             >
                 {playerlist.length && filterString ? (
                     <p>
-                        No players to show.
-                        <span className="text-xs block opacity-75">Clear the filter to show all players.</span>
+                        Ingen spillere at vise.
+                        <span className="text-xs block opacity-75">Ryd filteret for at se alle spillere.</span>
                     </p>
                 ) : (
                     <p>
-                        No players online.
-                        <span className="text-xs block opacity-75">Invite some friends to join in!</span>
+                        Ingen spillere online.
+                        <span className="text-xs block opacity-75">Inviter nogen venner med in!</span>
                     </p>
                 )}
             </div>
