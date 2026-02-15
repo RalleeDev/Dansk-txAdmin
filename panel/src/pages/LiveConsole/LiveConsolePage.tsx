@@ -182,11 +182,11 @@ export default function LiveConsolePage() {
                     ).then((res) => {
                         //undefined if no error
                         if (res === false) {
-                            txToast.error('Failed to copy to clipboard :(');
+                            txToast.error('Kopiering til udklipsholderen mislykkedes :(');
                         }
                     }).catch((error) => {
                         txToast.error({
-                            title: 'Failed to copy to clipboard:',
+                            title: 'Kopiering til udklipsholderen mislykkedes:',
                             msg: error.message,
                         });
                     });
@@ -388,7 +388,7 @@ export default function LiveConsolePage() {
         term.clear();
         searchAddon.clearDecorations();
         setShowSearchBar(false);
-        term.write(`${ANSI.YELLOW}[console cleared]${ANSI.RESET}\n`);
+        term.write(`${ANSI.YELLOW}[Konsol Ryddet]${ANSI.RESET}\n`);
     }
     const toggleSearchBar = () => {
         setShowSearchBar(!showSearchBar);
@@ -416,7 +416,7 @@ export default function LiveConsolePage() {
                         <div className='flex flex-col gap-6 items-center justify-center text-muted-foreground select-none'>
                             <Loader2Icon className='w-16 h-16 animate-spin' />
                             <h2 className='text-3xl tracking-wider font-light animate-pulse'>
-                                &nbsp;&nbsp;&nbsp;Connecting...
+                                &nbsp;&nbsp;&nbsp;Tilslutter...
                             </h2>
                         </div>
                     </div>

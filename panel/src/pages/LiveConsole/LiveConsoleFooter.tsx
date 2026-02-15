@@ -114,11 +114,11 @@ export default function LiveConsoleFooter(props: LiveConsoleFooterProps) {
 
     let inputError: string | undefined;
     if (!hasWritePerm) {
-        inputError = 'You do not have permission to write to the console.';
+        inputError = 'Du har ikke tilladelse til at bruge konsollen.';
     } else if (!fxRunnerState.isChildAlive) {
-        inputError = 'The server is not running.';
+        inputError = 'Serveren er ikke tændt.';
     } else if (!props.isConnected) {
-        inputError = 'Socket connection lost.';
+        inputError = 'Socket-forbindelse mistet.';
     }
 
     return (
@@ -144,7 +144,7 @@ export default function LiveConsoleFooter(props: LiveConsoleFooterProps) {
                         "w-full",
                         !!inputError && 'placeholder:text-destructive placeholder:opacity-100'
                     )}
-                    placeholder={inputError ?? "Type a command..."}
+                    placeholder={inputError ?? "Skriv en kommando..."}
                     type="text"
                     disabled={!!inputError}
                     onKeyDown={handleInputKeyDown}
@@ -156,24 +156,24 @@ export default function LiveConsoleFooter(props: LiveConsoleFooterProps) {
             <div className="flex flex-row justify-evenly gap-3 2xl:gap-1 select-none">
                 <ConsoleFooterButton
                     icon={BookMarkedIcon}
-                    title="Saved"
+                    title="Gemt"
                     onClick={props.toggleSaveSheet}
                 />
                 <ConsoleFooterButton
                     icon={SearchIcon}
-                    title="Search"
+                    title="Søg"
                     disabled={!props.isConnected}
                     onClick={props.toggleSearchBar}
                 />
                 <ConsoleFooterButton
                     icon={Trash2Icon}
-                    title="Clear"
+                    title="Ryd"
                     disabled={!props.isConnected}
                     onClick={props.consoleClear}
                 />
                 <ConsoleFooterButton
                     icon={FileDownIcon}
-                    title="Download"
+                    title="Hent"
                     disabled={!props.isConnected}
                     onClick={() => {
                         openExternalLink('/fxserver/downloadLog');

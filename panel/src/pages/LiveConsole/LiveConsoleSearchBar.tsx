@@ -31,7 +31,7 @@ function SearchBarButton({ title, onClick, isActive, children }: ButtonProps) {
 }
 
 
-const labelNoResults = 'No results';
+const labelNoResults = 'Intet Resultater';
 const xtermDecorations = {
     activeMatchBackground: '#FF00DC',
     activeMatchColorOverviewRuler: '#FF00DC',
@@ -157,21 +157,21 @@ export default function LiveConsoleSearchBar({ show, setShow, searchAddon }: Liv
                 <Input
                     ref={inputRef}
                     className="h-8"
-                    placeholder="Search string"
+                    placeholder="Søg efter"
                     onKeyDown={handleInputKeyDown}
                     onChange={handleInputChange}
                     onBlur={() => { searchAddon.clearActiveDecoration() }}
                 />
                 <div className="absolute top-1/2 right-1 transform -translate-y-1/2 flex text-muted-foreground gap-2">
                     <SearchBarButton
-                        title="Case Sensitive"
+                        title="Følsom overfor store og små bogstaver"
                         isActive={caseSensitive}
                         onClick={handleCaseSensitiveMode}
                     >
                         <CaseSensitiveIcon className="h-5 w-5" />
                     </SearchBarButton>
                     <SearchBarButton
-                        title="Whole Word"
+                        title="Hele ord"
                         isActive={wholeWord}
                         onClick={handleWholeWordMode}
                     >
@@ -191,19 +191,19 @@ export default function LiveConsoleSearchBar({ show, setShow, searchAddon }: Liv
             </div>
             <div className="flex gap-2 text-muted-foreground">
                 <SearchBarButton
-                    title="Previous"
+                    title="Forrige"
                     onClick={handlePrevious}
                 >
                     <ArrowUpIcon className="h-5 w-5" />
                 </SearchBarButton>
                 <SearchBarButton
-                    title="Next"
+                    title="Næste"
                     onClick={handleNext}
                 >
                     <ArrowDownIcon className="h-5 w-5" />
                 </SearchBarButton>
                 <SearchBarButton
-                    title="Close"
+                    title="Luk"
                     onClick={() => { setShow(false) }}
                 >
                     <XIcon className="h-5 w-5" />
