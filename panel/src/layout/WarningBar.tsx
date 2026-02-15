@@ -77,7 +77,7 @@ export function InnerWarningBar({ titleIcon, title, description, isImportant, ca
                             onClick={() => postponeUpdate()}
                             className={isImportant ? "text-foreground border-foreground" : 'dark:border-primary-foreground dark:hover:border-primary'}
                         >
-                            <BellOffIcon className="h-[0.9rem] mr-1" /> Postpone
+                            <BellOffIcon className="h-[0.9rem] mr-1" /> Udsæt
                         </Button>}
 
                         <Button
@@ -87,7 +87,7 @@ export function InnerWarningBar({ titleIcon, title, description, isImportant, ca
                             className={isImportant ? "text-foreground border-foreground" : 'dark:border-primary-foreground dark:hover:border-primary'}
                         >
                             <a href="https://discord.gg/uAmsGa2" target="_blank">
-                                <FaDiscord size="14" className="mr-1" /> Support
+                                <FaDiscord size="14" className="mr-1" /> Få hjælp
                             </a>
                         </Button>
                     </div>
@@ -106,8 +106,8 @@ export default function WarningBar() {
             titleIcon={<CloudOffIcon className="inline h-[1.2rem] -mt-1 mr-1" />}
             title="Socket connection lost."
             description={<>
-                The connection to the txAdmin server has been lost. <br />
-                If you closed FXServer, please restart it.
+                Forbindelsen til FXServeren er blevet tabt. <br />
+                HVis du lukkede FXServer, Genstart venglist den.
             </>}
             isImportant={true}
             canPostpone={false}
@@ -116,11 +116,11 @@ export default function WarningBar() {
         return <InnerWarningBar
             titleIcon={<DownloadCloudIcon className="inline h-[1.2rem] -mt-1 mr-1" />}
             title={txUpdateData.isImportant
-                ? 'This version of txAdmin is outdated.'
-                : 'A patch (bug fix) update is available for txAdmin.'}
+                ? 'Denne version af txAdmin er forældet..'
+                : 'Der er en patch (fejlrettelse) tilgængelig til txAdmin..'}
             description={txUpdateData.isImportant
-                ? `Version v${txUpdateData.version} has been released bringing new features, bug fixes and improvements.`
-                : `If you are experiencing any kind of issue, please update to v${txUpdateData.version}.`}
+                ? `Version v${txUpdateData.version} er blevet udgivet med nye funktioner, fejlrettelser og forbedringer.`
+                : `Hvis du oplever nogen form for problemer, opdater venligst til v${txUpdateData.version}.`}
             isImportant={txUpdateData.isImportant}
             canPostpone={true}
         />
@@ -128,9 +128,9 @@ export default function WarningBar() {
         return <InnerWarningBar
             titleIcon={<DownloadCloudIcon className="inline h-[1.2rem] -mt-1 mr-1" />}
             title={fxUpdateData.isImportant
-                ? 'This version of FXServer is outdated.'
-                : 'An update is available for FXServer.'}
-            description={`Please update FXServer to artifact ${fxUpdateData.version}.`}
+                ? 'Denne version af FXServer er forældet.'
+                : 'En opdatering er tilgængelig for FXServerr.'}
+            description={`Opdater venligst FXServers artifact til ${fxUpdateData.version}.`}
             isImportant={fxUpdateData.isImportant}
             canPostpone={true}
         />

@@ -48,8 +48,8 @@ function HeaderMenuLink(props: HeaderMenuLinkProps) {
                         </a>
                     </TooltipTrigger>
                     <TooltipContent side='bottom' className="text-destructive-inline text-center">
-                        You do not have permission <br />
-                        to access this page.
+                        Du har ikke tilladelse <br />
+                        til at tilgå denne side.
                     </TooltipContent>
                 </Tooltip>
             ) : (
@@ -92,22 +92,22 @@ export default function DesktopNavbar() {
                         <div className="ml-1 mb-2 rounded-md size-2 bg-accent" />
                     </DynamicNewItem> */}
                     <HeaderMenuItem href="/players">
-                        Players
+                        Spillere
                     </HeaderMenuItem>
                     <HeaderMenuItem href="/history">
-                        History
+                        Historik
                     </HeaderMenuItem>
                     <HeaderMenuItem href="/insights/player-drops">
-                        Player Drops
+                        Spillerdrops
                     </HeaderMenuItem>
                     <HeaderMenuItem href="/whitelist">
                         Whitelist
                     </HeaderMenuItem>
                     <HeaderMenuItem href="/admins" disabled={!hasPerm('manage.admins')}>
-                        Admins
+                        Administrators
                     </HeaderMenuItem>
                     <HeaderMenuItem href="/settings" disabled={!hasPerm('settings.view')}>
-                        Settings
+                        Indstillinger
                     </HeaderMenuItem>
                 </NavigationMenuList>
             </NavigationMenu>
@@ -131,27 +131,27 @@ export default function DesktopNavbar() {
                                 className="w-36 justify-start"
                                 href="/system/master-actions"
                             >
-                                Master Actions
+                               Mesterhandlinger
                             </HeaderMenuLink>
                             <HeaderMenuLink
                                 className="w-36 justify-start"
                                 href="/system/diagnostics"
                             >
-                                Diagnostics
+                                Diagnostik
                             </HeaderMenuLink>
                             <HeaderMenuLink
                                 className="w-36 justify-start"
                                 href="/system/console-log"
                                 disabled={!hasPerm('txadmin.log.view')}
                             >
-                                Console Log
+                                Konsol log
                             </HeaderMenuLink>
                             <HeaderMenuLink
                                 className="w-36 justify-start"
                                 href="/system/action-log"
                                 disabled={!hasPerm('txadmin.log.view')}
                             >
-                                Action Log
+                                Handlings Log
                             </HeaderMenuLink>
                         </NavigationMenuContent>
                     </NavigationMenuItem>

@@ -35,13 +35,13 @@ export function GlobalMenuSheet() {
                         </h2>
                         <div className="flex flex-wrap flex-row xs:grid grid-cols-2 gap-4">
                             <MenuNavLink href="/players">
-                                <UsersIcon className="mr-2 h-4 w-4" />Players
+                                <UsersIcon className="mr-2 h-4 w-4" />Spillere
                             </MenuNavLink>
                             <MenuNavLink href="/history">
-                                <ScrollIcon className="mr-2 h-4 w-4" />History
+                                <ScrollIcon className="mr-2 h-4 w-4" />Historik
                             </MenuNavLink>
                             <MenuNavLink href="/insights/player-drops">
-                                <DoorOpenIcon className="mr-2 h-4 w-4" />Player Drops
+                                <DoorOpenIcon className="mr-2 h-4 w-4" />Spiller Drops
                             </MenuNavLink>
                             <MenuNavLink href="/whitelist">
                                 <ClipboardCheckIcon className="mr-2 h-4 w-4" />Whitelist
@@ -50,7 +50,7 @@ export function GlobalMenuSheet() {
                                 <UserSquare2Icon className="mr-2 h-4 w-4" />Admins
                             </MenuNavLink>
                             <MenuNavLink href="/settings" disabled={!hasPerm('settings.view')}>
-                                <SettingsIcon className="mr-2 h-4 w-4" />Settings
+                                <SettingsIcon className="mr-2 h-4 w-4" />Indstillinger
                             </MenuNavLink>
                         </div>
                     </div>
@@ -60,16 +60,16 @@ export function GlobalMenuSheet() {
                         </h2>
                         <div className="flex flex-wrap flex-row xs:grid grid-cols-2 gap-4">
                             <MenuNavLink href="/system/master-actions">
-                                <ZapIcon className="mr-2 h-4 w-4" />Master Actions
+                                <ZapIcon className="mr-2 h-4 w-4" />Master Handlinger
                             </MenuNavLink>
                             <MenuNavLink href="/system/diagnostics">
-                                <PieChartIcon className="mr-2 h-4 w-4" />Diagnostics
+                                <PieChartIcon className="mr-2 h-4 w-4" />Diagnostik
                             </MenuNavLink>
                             <MenuNavLink href="/system/console-log" disabled={!hasPerm('txadmin.log.view')}>
-                                <ListIcon className="mr-2 h-4 w-4" />Console Log
+                                <ListIcon className="mr-2 h-4 w-4" />Konsol Log
                             </MenuNavLink>
                             <MenuNavLink href="/system/action-log" disabled={!hasPerm('txadmin.log.view')}>
-                                <ListIcon className="mr-2 h-4 w-4" />Action Log
+                                <ListIcon className="mr-2 h-4 w-4" />Handlings Log
                             </MenuNavLink>
                         </div>
                     </div>

@@ -82,7 +82,7 @@ export default function DashboardPage() {
     } else if (txConfigState !== TxConfigState.Ready) {
         return <div className='size-full'>
             <ModalCentralMessage>
-            <GenericSpinner msg={`Unknown Config State: ${String(txConfigState)}`} />
+            <GenericSpinner msg={`Ukendt konfigurations stadie: ${String(txConfigState)}`} />
         </ModalCentralMessage>
         </div>;
     } else {

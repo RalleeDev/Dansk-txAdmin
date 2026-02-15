@@ -93,7 +93,7 @@ const FullPerfChart = memo(({ threadName, apiData, apiDataAge, width, height, is
             setRenderError('');
             console.timeEnd('drawFullPerfChart');
         } catch (error) {
-            setRenderError((error as Error).message ?? 'Unknown error.');
+            setRenderError((error as Error).message ?? 'Ukendt fejl.');
         } finally {
             console.groupEnd();
         }
@@ -114,7 +114,7 @@ const FullPerfChart = memo(({ threadName, apiData, apiDataAge, width, height, is
                     setRenderError('');
                 }}
             >
-                Retry{errorRetry ? ` (${errorRetry})` : ''}
+                Prøv Igen{errorRetry ? ` (${errorRetry})` : ''}
             </Button>
         </div>
     }
@@ -146,13 +146,13 @@ const FullPerfChart = memo(({ threadName, apiData, apiDataAge, width, height, is
 
 function ChartErrorMessage({ error }: { error: Error | string }) {
     const errorMessageMaps: Record<string, ReactNode> = {
-        bad_request: 'Chart data loading failed: bad request.',
-        invalid_thread_name: 'Chart data loading failed: invalid thread name.',
-        data_unavailable: 'Chart data loading failed: data not yet available.',
+        bad_request: 'Indlæsning af diagram data fejlede: dårlig anmodning.',
+        invalid_thread_name: 'Indlæsning af diagram data fejlede: Ugyldig tråd navn.',
+        data_unavailable: 'Indlæsning af diagram data fejlede: dataen er ikke tilgængelig endnu.',
         not_enough_data: (<p className='text-center'>
-            <strong>There is not enough data to display the chart just yet.</strong><br />
+            <strong>Der er ikke nok data til at vise diagrammet endnu.</strong><br />
             <span className='text-base italic'>
-                The chart requires at least 30 minutes of server runtime data to be available.
+                Dette diagram kræver data på mindst 30 minutes oppetid for at kunne vise diagrammet.
             </span>
         </p>),
     };
@@ -160,13 +160,13 @@ function ChartErrorMessage({ error }: { error: Error | string }) {
     if (typeof error === 'string') {
         return (
             <div className="absolute inset-0 flex flex-col items-center justify-center text-2xl text-muted-foreground">
-                {errorMessageMaps[error] ?? 'Unknown BackendApiError'}
+                {errorMessageMaps[error] ?? 'Ukendt BackendApiFejl'}
             </div>
         );
     } else {
         return (
             <div className="absolute inset-0 flex flex-col items-center justify-center text-2xl text-destructive-inline">
-                Error: {error.message ?? 'Unknown Error'}
+                Error: {error.message ?? 'Ukendt Fejl'}
             </div>
         );
     }
@@ -227,7 +227,7 @@ export default function FullPerfCard() {
         <div className="w-full h-[28rem] pt-2 md:rounded-xl border bg-card shadow-sm flex flex-col fill-primary">
             <div className="px-4 flex flex-row items-center justify-between space-y-0 pb-2 text-muted-foreground">
                 <h3 className="tracking-tight text-sm font-medium line-clamp-1">
-                    Server performance
+                    Server Ydeevne
                 </h3>
                 <div className="flex gap-4">
                     <Select defaultValue={selectedThread} onValueChange={setSelectedThread}>

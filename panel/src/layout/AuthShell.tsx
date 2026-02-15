@@ -57,8 +57,8 @@ export default function AuthShell() {
                             <AuthContentWrapper>
                                 <AuthError
                                     error={{
-                                        errorTitle: '404 | Not Found',
-                                        errorMessage: 'Something went wrong.',
+                                        errorTitle: '404 | Ikke fundet',
+                                        errorMessage: 'Noget gik galt.',
                                     }}
                                 />
                             </AuthContentWrapper>

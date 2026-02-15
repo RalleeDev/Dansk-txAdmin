@@ -95,7 +95,7 @@ function ButtonTogglePlayerlistSheet({ className }: NavButtonProps) {
         >
             <PersonStanding className="h-6 w-6 sm:h-5 sm:w-5" />
             <div className="hidden sm:flex flex-row min-w-max">
-                Players
+                Spillere
                 <span className="hidden lg:inline-block font-mono">: {playerCount}</span>
             </div>
         </button>
@@ -145,21 +145,21 @@ function AuthedHeaderFragment() {
                     <DropdownMenuItem className="cursor-pointer" onClick={switchTheme}>
                         <span className="hidden dark:flex items-center">
                             <SunIcon className="mr-2 h-4 w-4" />
-                            Light Mode
+                            Lys tilstand
                         </span>
                         <span className="flex dark:hidden items-center">
                             <MoonIcon className="mr-2 h-4 w-4" />
-                            Dark Mode
+                            Mørk tilstand
                         </span>
                     </DropdownMenuItem>
                 )}
                 <DropdownMenuItem className="cursor-pointer" onClick={openAccountModal}>
                     <KeyRoundIcon className="mr-2 h-4 w-4" />
-                    Your Account
+                    Din konto
                 </DropdownMenuItem>
                 <DropdownMenuItem className="cursor-pointer" onClick={gotoSupportDiscord}>
                     <FaDiscord size="14" className="mr-2" />
-                    Support
+                    Få hjælp
                 </DropdownMenuItem>
 
                 {/* Don't show logout if on NUI */}
@@ -168,7 +168,7 @@ function AuthedHeaderFragment() {
                         <DropdownMenuSeparator />
                         <DropdownMenuItem className="cursor-pointer" onClick={doLogout}>
                             <LogOutIcon className="mr-2 h-4 w-4" />
-                            Logout
+                            Logud
                         </DropdownMenuItem>
                     </>
                 )}

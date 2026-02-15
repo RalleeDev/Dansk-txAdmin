@@ -63,13 +63,13 @@ const ThreadPerfChart = memo(({ data, minTickIntervalMarker, width, height }: Th
         return (
             <div className="p-3 text-gray-900 bg-white rounded-md shadow-md">
                 <div>
-                    Tick duration: <strong>{formatTickBoundary(lowerLimit)}</strong> ~ <strong>{formatTickBoundary(upperLimit)}</strong>
+                    Tick varighed: <strong>{formatTickBoundary(lowerLimit)}</strong> ~ <strong>{formatTickBoundary(upperLimit)}</strong>
                 </div>
                 <div>
-                    Time spent: <strong>~{pctString}</strong>
+                    Tid brugt: <strong>~{pctString}</strong>
                 </div>
                 <div>
-                    Tick count: {datum.data.count}
+                    Tick antal: {datum.data.count}
                 </div>
             </div>
         );
@@ -113,7 +113,7 @@ const ThreadPerfChart = memo(({ data, minTickIntervalMarker, width, height }: Th
             }}
             axisBottom={{
                 format: '.0%',
-                legend: 'percent of total time',
+                legend: 'procent af den samlede tid',
                 legendPosition: 'middle',
                 legendOffset: 32,
             }}
@@ -252,7 +252,7 @@ export default function ThreadPerfCard() {
                 (<span className="text-xs text-warning-inline font-mono">{fullStr}</span>)
             </>);
         } else {
-            return dataAge.isStale ? '(minutes ago)' : '(last minute)';
+            return dataAge.isStale ? '(minutter siden)' : '(sidste minut)';
         }
     }, [svRuntimeData, perfCursorData]);
 
@@ -266,8 +266,8 @@ export default function ThreadPerfCard() {
     } else if (typeof chartData === 'string') {
         contentNode = <div className="absolute inset-0 flex flex-col items-center justify-center text-muted-foreground text-center">
             <p className='max-w-80'>
-                Data not yet available. <br />
-                The thread performance chart will appear soon after the server is online.
+                Data ikke tilgængelig endnu. <br />
+                Diagrammet over trådene kommer typisk snart efter serveren er startet.
             </p>
         </div>;
     } else {
@@ -281,7 +281,7 @@ export default function ThreadPerfCard() {
         <div className="py-2 md:rounded-xl border bg-card shadow-sm flex flex-col col-span-3 fill-primary h-[20rem] max-h-[20rem]">
             <div className="px-4 flex flex-row items-center justify-between space-y-0 pb-2 text-muted-foreground">
                 <h3 className="tracking-tight text-sm font-medium line-clamp-1">
-                    {cursorThreadLabel ?? selectedThread} performance {titleTimeIndicator}
+                    {cursorThreadLabel ?? selectedThread} ydeevne {titleTimeIndicator}
                 </h3>
                 <div className="flex gap-4">
                     <Select
