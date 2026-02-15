@@ -13,11 +13,11 @@ export default function NotFound({ params }: Props) {
     return (
         <div className="w-full flex items-center justify-center">
             <div className="text-center">
-                <h1 className="bg-fuchsia-600 text-4xl w-fit mx-auto">404 | Not Found</h1>
+                <h1 className="bg-fuchsia-600 text-4xl w-fit mx-auto">404 | Ikke fundet</h1>
                 <p className="mt-2">
-                    The page <InlineCode>/{params['*']}</InlineCode> does not seem to be correct.
+                    Siden <InlineCode>/{params['*']}</InlineCode> ser ikke ud til at være korrekt.
                 </p>
-                <Link href="/" className="text-accent hover:underline">Return to Dashboard?</Link>
+                <Link href="/" className="text-accent hover:underline">Returner til forsiden?</Link>
             </div>
         </div>
     );
