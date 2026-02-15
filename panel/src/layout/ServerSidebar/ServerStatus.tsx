@@ -67,24 +67,24 @@ function StatusBadge({ children, tooltip, type }: StatusBadgeProps) {
 
 const discordStatusMap = {
     [DiscordBotStatus.Disabled]: {
-        text: 'DISABLED',
+        text: 'DEAKTIVERET',
         color: 'default',
-        description: 'Discord bot is disabled.',
+        description: 'Discord bot er deaktiveret.',
     },
     [DiscordBotStatus.Starting]: {
-        text: 'STARTING',
+        text: 'STARTER',
         color: 'warning',
-        description: 'Discord bot is starting.',
+        description: 'Discord bot er ved at starte op.',
     },
     [DiscordBotStatus.Ready]: {
-        text: 'READY',
+        text: 'KLAR',
         color: 'default',
-        description: 'Discord bot is ready.',
+        description: 'Discord bot er klar.',
     },
     [DiscordBotStatus.Error]: {
-        text: 'ERROR',
+        text: 'FEJL',
         color: 'destructive',
-        description: 'Discord bot is in an error state.',
+        description: 'Discord bot er i in fejl tilstand.',
     },
 } as const;
 
@@ -115,7 +115,7 @@ export default function ServerStatus() {
                     delimiter: ' ',
                 }
             );
-            serverUptimeDesc = 'Time since the server came online.';
+            serverUptimeDesc = 'Tid siden serveren kom online.';
         }
 
         //Server status
@@ -123,35 +123,35 @@ export default function ServerStatus() {
         serverHealthDescInfo = globalStatus.server.healthReason;
         if (globalStatus.server.health === FxMonitorHealth.ONLINE) {
             serverHealthColor = 'success';
-            serverHealthDescTitle = 'Resources running, accepting connections.';
+            serverHealthDescTitle = 'Ressourcer kører, accepterer nye forbindelser.';
         } else if (globalStatus.server.health === FxMonitorHealth.PARTIAL) {
             serverHealthColor = 'warning';
-            serverHealthDescTitle = 'Resources not running or not accepting connections.';
+            serverHealthDescTitle = 'Ressourcer køre ikke eller accepterer ikke nye forbindelser.';
         } else if (globalStatus.server.health === FxMonitorHealth.OFFLINE) {
             serverHealthColor = 'destructive';
-            serverHealthDescTitle = 'Server is offline.';
+            serverHealthDescTitle = 'Serveren er offline.';
         } else {
             serverHealthColor = 'destructive';
-            serverHealthDescTitle = 'Unknown server status.';
+            serverHealthDescTitle = 'Ukendt Server Status.';
         }
 
         //Whitelist
         if (globalStatus.server.whitelist === 'disabled') {
-            whitelistText = 'DISABLED';
-            whitelistDesc = 'Anyone can join.';
+            whitelistText = 'DEAKTIVERET';
+            whitelistDesc = 'Alle kan forbinde.';
         } else if (globalStatus.server.whitelist === 'adminOnly') {
             whitelistText = 'ADMIN';
             whitelistColor = 'warning';
-            whitelistDesc = 'Only admins can join.';
+            whitelistDesc = 'Kun administratore kan forbinde.';
         } else if (globalStatus.server.whitelist === 'discordMember') {
-            whitelistText = 'MEMBER';
-            whitelistDesc = 'Only Discord server members can join.';
+            whitelistText = 'MEDLEM';
+            whitelistDesc = 'Kun medlemmer af discorden kan forbinde.';
         } else if (globalStatus.server.whitelist === 'discordRoles') {
-            whitelistText = 'ROLES';
-            whitelistDesc = 'Only Discord server members with the specified roles can join.';
+            whitelistText = 'ROLLER';
+            whitelistDesc = 'Kun medlemmer af discorden med specifikke roller kan forbinde.';
         } else if (globalStatus.server.whitelist === 'approvedLicense') {
-            whitelistText = 'LICENSE';
-            whitelistDesc = 'Only players with an approved license can join.';
+            whitelistText = 'LICENS';
+            whitelistDesc = 'Kun spillere med en godkendt licens kan spille.';
         }
 
         //Bot status - too long to show all the text, so just show the code
@@ -160,9 +160,9 @@ export default function ServerStatus() {
             discordStatusColor = discordStatusMap[globalStatus.discord].color;
             discordStatusDesc = discordStatusMap[globalStatus.discord].description;
         } else {
-            discordStatusText = `CODE-${globalStatus.discord}`;
+            discordStatusText = `KODE-${globalStatus.discord}`;
             discordStatusColor = 'destructive';
-            discordStatusDesc = 'Unknown status code';
+            discordStatusDesc = 'Ukendt Status Kode';
         }
     }
 
@@ -179,7 +179,7 @@ export default function ServerStatus() {
                 >{serverHealthText}</StatusBadge>
             </div>
             <div className="flex justify-between items-center text-muted-foreground text-sm gap-1.5">
-                Uptime:
+                Oppetid:
                 <StatusBadge
                     tooltip={serverUptimeDesc}
                 >{serverUptimeText}</StatusBadge>

@@ -31,10 +31,10 @@ function PendingServerConfigure({ txConfigState }: PendingServerConfigureProps) 
         let newHref = '';
         if (txConfigState === TxConfigState.Setup && !currLocation.startsWith('/server/setup')) {
             newHref = '/server/setup';
-            linkText.current = 'Go to the setup page!';
+            linkText.current = 'Gå til opsætningssiden!';
         } else if (txConfigState === TxConfigState.Deployer && !currLocation.startsWith('/server/deployer')) {
             newHref = '/server/deployer';
-            linkText.current = 'Go to the deployer page!';
+            linkText.current = 'Gå til deployer-siden!';
         } else {
             newHref = '';
         }
@@ -82,13 +82,13 @@ export default function ServerMenu() {
             </h2>
             <div className="space-y-1 select-none">
                 <MenuNavLink href="/">
-                    <LayoutDashboardIcon className="mr-2 h-4 w-4" />Dashboard
+                    <LayoutDashboardIcon className="mr-2 h-4 w-4" />Forside
                 </MenuNavLink>
                 <MenuNavLink href="/server/console" disabled={!hasPerm('console.view')}>
-                    <ChevronRightSquareIcon className="mr-2 h-4 w-4" />Live Console
+                    <ChevronRightSquareIcon className="mr-2 h-4 w-4" />Live Konsole
                 </MenuNavLink>
                 <MenuNavLink href="/server/resources">
-                    <BoxIcon className="mr-2 h-4 w-4" />Resources
+                    <BoxIcon className="mr-2 h-4 w-4" />Ressourcer
                 </MenuNavLink>
                 <MenuNavLink href="/server/server-log" disabled={!hasPerm('server.log.view')}>
                     <EyeIcon className="mr-2 h-4 w-4" />Server Log
@@ -98,7 +98,7 @@ export default function ServerMenu() {
                 </MenuNavLink>
                 {window.txConsts.showAdvanced && (
                     <MenuNavLink href="/advanced" className='text-accent' disabled={!hasPerm('all_permisisons')}>
-                        <DnaIcon className="mr-2 h-4 w-4" />Advanced
+                        <DnaIcon className="mr-2 h-4 w-4" />Avanceret
                     </MenuNavLink>
                 )}
                 {import.meta.env.DEV && (

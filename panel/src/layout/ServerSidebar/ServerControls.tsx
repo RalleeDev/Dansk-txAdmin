@@ -52,9 +52,9 @@ export default function ServerControls() {
 
     const handleServerControl = (action: 'start' | 'stop' | 'restart') => {
         const messageMap = {
-            start: 'Starting server',
-            stop: 'Stopping server',
-            restart: 'Restarting server',
+            start: 'Starter server',
+            stop: 'Stopper server',
+            restart: 'Genstarter server',
         }
         const toastLoadingMessage = `${messageMap[action]}...`;
         const callApi = () => {
@@ -70,7 +70,7 @@ export default function ServerControls() {
         } else {
             openConfirmDialog({
                 title: messageMap[action],
-                message: `Are you sure you want to ${action} the server?`,
+                message: `Er du sikker på du vil ${action} serveren?`,
                 onConfirm: callApi,
             });
         }
@@ -86,9 +86,9 @@ export default function ServerControls() {
     const handleAnnounce = () => {
         if (!fxRunnerState.isChildAlive) return;
         openPromptDialog({
-            title: 'Send Announcement',
-            message: 'Type the message to be broadcasted to all players.',
-            placeholder: 'announcement message',
+            title: 'Send meddelelse',
+            message: 'Skriv beskeden du gerne ville sende ud til alle spillere.',
+            placeholder: 'Meddelelsen',
             submitLabel: 'Send',
             required: true,
             onSubmit: (input) => {
@@ -104,15 +104,15 @@ export default function ServerControls() {
     const handleKickAll = () => {
         if (!fxRunnerState.isChildAlive) return;
         openPromptDialog({
-            title: 'Kick All Players',
-            message: 'Type the kick reason or leave it blank (press enter)',
-            placeholder: 'kick reason',
+            title: 'Smid alle spillere ud',
+            message: 'Skriv grunden for at smide ud eller efterlad tom (tryk enter)',
+            placeholder: 'Grunden for at smide ud',
             submitLabel: 'Send',
             onSubmit: (input) => {
                 closeAllSheets();
                 fxsCommandsApi({
                     data: { action: 'kick_all', parameter: input },
-                    toastLoadingMessage: 'Kicking players...',
+                    toastLoadingMessage: 'Smider alle spillere ud...',
                 });
             }
         });
@@ -124,7 +124,7 @@ export default function ServerControls() {
     if (txConfigState !== TxConfigState.Ready) {
         return (
             <div className='w-full h-8 text-center tracking-wider font-light opacity-75'>
-                Server not configured.
+                Serveren er ikke konfigureret.
             </div>
         )
     }
@@ -155,11 +155,11 @@ export default function ServerControls() {
                 </TooltipTrigger>
                 <TooltipContent className={cn(!hasControlPerms && 'text-destructive-inline text-center')}>
                     {hasControlPerms ? (
-                        <p>{fxRunnerState.isIdle ? 'Start the server! 🚀' : 'Stop the server'}</p>
+                        <p>{fxRunnerState.isIdle ? 'Start serveren! 🚀' : 'Stop serveren'}</p>
                     ) : (
                         <p>
-                            You do not have permission <br />
-                            to control the server.
+                            Du har ikke tilladelse <br />
+                            til at kontrollere serveren.
                         </p>
                     )}
                 </TooltipContent>
@@ -176,11 +176,11 @@ export default function ServerControls() {
                 </TooltipTrigger>
                 <TooltipContent className={cn(!hasControlPerms && 'text-destructive-inline text-center')}>
                     {hasControlPerms ? (
-                        <p>Restart Server</p>
+                        <p>Genstart Serveren</p>
                     ) : (
                         <p>
-                            You do not have permission <br />
-                            to control the server.
+                            Du har ikke tilladelse <br />
+                            til at kontrollere serveren.
                         </p>
                     )}
                 </TooltipContent>
@@ -197,11 +197,11 @@ export default function ServerControls() {
                 </TooltipTrigger>
                 <TooltipContent className={cn(!hasControlPerms && 'text-destructive-inline text-center')}>
                     {hasControlPerms ? (
-                        <p>Kick All Players</p>
+                        <p>Smid alle spillere ud</p>
                     ) : (
                         <p>
-                            You do not have permission <br />
-                            to control the server.
+                            Du har ikke tilladelse <br />
+                            til at kontrollere serveren.
                         </p>
                     )}
                 </TooltipContent>
@@ -218,11 +218,11 @@ export default function ServerControls() {
                 </TooltipTrigger>
                 <TooltipContent className={cn(!hasAnnouncementPerm && 'text-destructive-inline text-center')}>
                     {hasAnnouncementPerm ? (
-                        <p>Send Announcement</p>
+                        <p>Send Meddelelse</p>
                     ) : (
                         <p>
-                            You do not have permission <br />
-                            to send an Announcement.
+                            Du har ikke tilladelse <br />
+                            til at sende en meddelelse.
                         </p>
                     )}
                 </TooltipContent>

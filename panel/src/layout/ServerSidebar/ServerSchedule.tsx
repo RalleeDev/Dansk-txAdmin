@@ -14,25 +14,25 @@ import { useAdminPerms } from '@/hooks/auth';
 const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const timezoneDiffMessage = (
     <p className='text-destructive'>
-        Server's timezone: <b>{window.txConsts.serverTimezone}</b> <br />
-        Your timezone: <b>{browserTimezone}</b> <br />
-        Either use relative times, or make sure the scheduled is based on the server timezone.
+        Serverens tidszone: <b>{window.txConsts.serverTimezone}</b> <br />
+        Din tidszone: <b>{browserTimezone}</b> <br />
+        Enten brug relative tider, eller bekræft at skemaet bruger serverens tidszone.
     </p>
 )
 const promptCommonProps = {
     suggestions: ['+5', '+10', '+15', '+30'],
-    title: 'When should the server restart?',
+    title: 'Hvornår skal serveren genstarte?',
     message: (<>
         <p>
-            Possible formats: <br />
+            Mulige formater: <br />
             <ul className='list-disc ml-4'>
                 <li>
-                    <InlineCode>+MM</InlineCode> relative time in minutes
-                    (example: <InlineCode>+15</InlineCode> for 15 minutes from now.)
+                    <InlineCode>+MM</InlineCode> relativ tid i minutter
+                    (Eksempel: <InlineCode>+15</InlineCode> for 15 minutter fra nu.)
                 </li>
                 <li>
-                    <InlineCode>HH:MM</InlineCode> absolute 24-hour time
-                    (example: <InlineCode>23:30</InlineCode> for 11:30 PM.)
+                    <InlineCode>HH:MM</InlineCode> Absolut 24-timers ur
+                    (Eksempel: <InlineCode>23:30</InlineCode> for 11:30 PM.)
                 </li>
             </ul>
         </p>
@@ -76,15 +76,15 @@ export default function ServerSchedule() {
     if (!globalStatus) {
         return <div>
             <h2 className="mb-1 text-lg font-semibold tracking-tight">
-                Next Restart:
+                Næste genstart:
             </h2>
-            <span className='font-light text-muted-foreground italic'>loading...</span>
+            <span className='font-light text-muted-foreground italic'>indlæser...</span>
         </div>
     }
 
     //Processing status
     const { scheduler } = globalStatus;
-    let nextScheduledText = 'nothing scheduled';
+    let nextScheduledText = 'Intet planlagt';
     let nextScheduledClasses = 'text-muted-foreground italic';
     let disableAddEditBtn = false;
     let showCancelBtn = false;
@@ -96,9 +96,9 @@ export default function ServerSchedule() {
         const isLessThanMinute = scheduler.nextRelativeMs < 60_000;
         if (isLessThanMinute) {
             disableAddEditBtn = true;
-            nextScheduledText = `right now ${tempFlag}`;
+            nextScheduledText = `lige nu ${tempFlag}`;
         } else {
-            nextScheduledText = `in ${relativeTime} ${tempFlag}`;
+            nextScheduledText = `om ${relativeTime} ${tempFlag}`;
         }
 
         if (scheduler.nextSkip) {
@@ -120,46 +120,46 @@ export default function ServerSchedule() {
         closeAllSheets();
         if (input.includes(',')) {
             txToast.error({
-                title: 'Invalid scheduled restart time.',
-                msg: 'It looks like you are trying to schedule multiple restart times, which can only be done in the Settings page.\nThis input is for just the next (not persistent) restart.',
+                title: 'Ugyldigt tid for planlæggelse af genstart.',
+                msg: 'Der ser ud til du prøver at planlægge op til flere forskllige genstart, dette skal gøres inde i Indstillingerne.\nDette input felt er bare for det næste genstart (Ikke vedvarende) .',
             }, { duration: 10000 });
             return;
         }
         if (!validateSchedule(input)) {
-            txToast.error(`Invalid schedule time: ${input}`)
+            txToast.error(`Ugyldig tid for planlægning: ${input}`)
             return;
         }
         schedulerApi({
             data: { action: 'setNextTempSchedule', parameter: input },
-            toastLoadingMessage: 'Scheduling server restart...',
+            toastLoadingMessage: 'Planlægger næste server genstart...',
         });
     }
     const handleEdit = () => {
         openPromptDialog({
             ...promptCommonProps,
             onSubmit: onScheduleSubmit,
-            submitLabel: 'Edit',
+            submitLabel: 'Rediger',
         });
     }
     const handleAddSchedule = () => {
         openPromptDialog({
             ...promptCommonProps,
             onSubmit: onScheduleSubmit,
-            submitLabel: 'Schedule',
+            submitLabel: 'Planlæg',
         });
     }
     const handleCancel = () => {
         closeAllSheets();
         schedulerApi({
             data: { action: 'setNextSkip', parameter: true },
-            toastLoadingMessage: 'Cancelling next server restart...',
+            toastLoadingMessage: 'Annullerer næste servergenstart...',
         });
     }
     const handleEnable = () => {
         closeAllSheets();
         schedulerApi({
             data: { action: 'setNextSkip', parameter: false },
-            toastLoadingMessage: 'Enabling next server restart...',
+            toastLoadingMessage: 'Aktivérer næste servergenstart...',
         });
     }
 
@@ -167,7 +167,7 @@ export default function ServerSchedule() {
 
     return <div>
         <h2 className="mb-1 text-lg font-semibold tracking-tight">
-            Next Restart:
+            Næste Genstart:
         </h2>
         <span className={cn('font-light', nextScheduledClasses)}>{nextScheduledText}</span>
         <div className='flex flex-row justify-between gap-2 mt-2 flex-wrap'>
@@ -179,7 +179,7 @@ export default function ServerSchedule() {
                     disabled={!hasSchedulePerms || disableAddEditBtn}
                     onClick={handleEdit}
                 >
-                    <PenLineIcon className='h-4 w-4 mr-1' /> Edit
+                    <PenLineIcon className='h-4 w-4 mr-1' /> Rediger
                 </Button>
             ) : (
                 <Button
@@ -189,7 +189,7 @@ export default function ServerSchedule() {
                     disabled={!hasSchedulePerms || disableAddEditBtn}
                     onClick={handleAddSchedule}
                 >
-                    <PlusCircleIcon className='h-4 w-4 mr-1' /> Schedule Restart
+                    <PlusCircleIcon className='h-4 w-4 mr-1' /> Planlæg Genstart
                 </Button>
             )}
             {showCancelBtn && (
@@ -200,7 +200,7 @@ export default function ServerSchedule() {
                     onClick={handleCancel}
                     disabled={!hasSchedulePerms}
                 >
-                    <XCircleIcon className='h-4 w-4 mr-1' /> Cancel
+                    <XCircleIcon className='h-4 w-4 mr-1' /> Annuller
                 </Button>
             )}
             {showEnableBtn && (
@@ -211,7 +211,7 @@ export default function ServerSchedule() {
                     onClick={handleEnable}
                     disabled={!hasSchedulePerms}
                 >
-                    <PlayCircleIcon className='h-4 w-4 mr-1' /> Enable
+                    <PlayCircleIcon className='h-4 w-4 mr-1' /> Aktiver
                 </Button>
             )}
         </div>
