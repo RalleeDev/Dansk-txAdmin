@@ -33,21 +33,21 @@ import { HistoryTableSearchType } from "@shared/historyApiTypes";
 export const availableSearchTypes = [
     {
         value: 'actionId',
-        label: 'Action ID',
+        label: 'Handlings ID',
         placeholder: 'XXXX-XXXX',
-        description: 'Search actions by their ID.'
+        description: 'Søg handlinger efter deres ID.'
     },
     {
         value: 'reason',
-        label: 'Reason',
-        placeholder: 'Enter part of the reason to search for',
-        description: 'Search actions by their reason contents.'
+        label: 'Grund',
+        placeholder: 'Angiv en del af grunden til at søge efter',
+        description: 'Søg efter handlinger efter grund.'
     },
     {
         value: 'identifiers',
-        label: 'Player IDs',
-        placeholder: 'License, Discord, Steam, etc.',
-        description: 'Search actions by their player IDs separated by a comma.'
+        label: 'Spiller ID',
+        placeholder: 'Licens, Discord, Steam, osv.',
+        description: 'Søg handlinger efter Spiller ID separeret af et komma.'
     },
 ] as const;
 
@@ -137,8 +137,8 @@ export function HistorySearchBox({ doSearch, initialState, adminStats }: History
 
     //It's render time! 🎉
     const selectedSearchType = availableSearchTypes.find((type) => type.value === currSearchType);
-    if (!selectedSearchType) throw new Error(`Invalid search type: ${currSearchType}`);
-    if (!authData) throw new Error(`authData is not available`);
+    if (!selectedSearchType) throw new Error(`Ugyldig Søge type: ${currSearchType}`);
+    if (!authData) throw new Error(`authData er ikke tilgængelig`);
     const filteredAdmins = useMemo(() => {
         return adminStats.filter((admin) => admin.name !== authData.name)
     }, [adminStats, authData.name]);
@@ -183,12 +183,12 @@ export function HistorySearchBox({ doSearch, initialState, adminStats }: History
                                 onClick={() => setSearchTypeDropdownOpen(!isSearchTypeDropdownOpen)}
                                 className="xs:w-48 justify-between border-input bg-black/5 dark:bg-black/30 hover:dark:bg-primary grow md:grow-0"
                             >
-                                Search by {selectedSearchType.label}
+                                Søg efter {selectedSearchType.label}
                                 <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className='w-48'>
-                            <DropdownMenuLabel>Search Type</DropdownMenuLabel>
+                            <DropdownMenuLabel>Type af søgning</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuRadioGroup value={currSearchType} onValueChange={setCurrSearchType}>
                                 {availableSearchTypes.map((searchType) => (
@@ -211,13 +211,13 @@ export function HistorySearchBox({ doSearch, initialState, adminStats }: History
                         </SelectTrigger>
                         <SelectContent className="px-0">
                             <SelectItem value={SEARCH_ANY_STRING} className="cursor-pointer">
-                                Any type
+                                Enhver type
                             </SelectItem>
                             <SelectItem value={'ban'} className="cursor-pointer">
-                                Bans
+                                Udelukkelser
                             </SelectItem>
                             <SelectItem value={'warn'} className="cursor-pointer">
-                                Warns
+                                Advarsler
                             </SelectItem>
                         </SelectContent>
                     </Select>
@@ -228,7 +228,7 @@ export function HistorySearchBox({ doSearch, initialState, adminStats }: History
                         </SelectTrigger>
                         <SelectContent className="px-0">
                             <SelectItem value={SEARCH_ANY_STRING} className="cursor-pointer">
-                                By any admin
+                                Af enhver administrator
                             </SelectItem>
                             <SelectItem value={authData.name} className="cursor-pointer">
                                 {authData.name} <span className="opacity-50">({selfActionCount})</span>
@@ -251,7 +251,7 @@ export function HistorySearchBox({ doSearch, initialState, adminStats }: History
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="outline" className="grow md:grow-0">
-                                    More
+                                    Mere
                                     <ChevronDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                 </Button>
                             </DropdownMenuTrigger>
@@ -259,13 +259,13 @@ export function HistorySearchBox({ doSearch, initialState, adminStats }: History
                                 <DropdownMenuItem className="h-10 pl-1 pr-2 py-2" asChild>
                                     <Link href="/system/master-actions#cleandb" className="cursor-pointer">
                                         <ExternalLinkIcon className="inline mr-1 h-4" />
-                                        Bulk Remove
+                                        Fjern i Bulk
                                     </Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem className="h-10 pl-1 pr-2 py-2" asChild>
                                     <Link href="/settings/ban-templates" className="cursor-pointer">
                                         <ExternalLinkIcon className="inline mr-1 h-4" />
-                                        Ban Templates
+                                        Udelukkelses skabeloner
                                     </Link>
                                 </DropdownMenuItem>
                             </DropdownMenuContent>

@@ -97,23 +97,23 @@ export default function HistoryPage() {
         const hasCalloutData = calloutData && !('error' in calloutData);
         return [
             {
-                label: 'Total Warns',
+                label: 'Samlede Advarsler',
                 value: hasCalloutData ? calloutData.totalWarns : false,
                 icon: <AlertTriangleIcon />,
             },
             {
-                label: 'New Warns Last 7d',
+                label: 'Nye Advarsler de sidste 7d',
                 value: hasCalloutData ? calloutData.warnsLast7d : false,
                 icon: <AlertTriangleIcon />,
                 prefix: '+'
             },
             {
-                label: 'Total Bans',
+                label: 'Samlede Udelukkelser',
                 value: hasCalloutData ? calloutData.totalBans : false,
                 icon: <GavelIcon />,
             },
             {
-                label: 'New Bans Last 7d',
+                label: 'Nye udelukkelse de sidste 7d',
                 value: hasCalloutData ? calloutData.bansLast7d : false,
                 icon: <GavelIcon />,
                 prefix: '+'
