@@ -25,31 +25,31 @@ import { Link } from "wouter";
 export const availableSearchTypes = [
     {
         value: 'playerName',
-        label: 'Name',
-        placeholder: 'Enter a player name',
-        description: 'Search players by their last display name.'
+        label: 'Navn',
+        placeholder: 'Angiv et navn på en spiller',
+        description: 'Søger efter spillere med deres sidste display navn.'
     },
     {
         value: 'playerNotes',
-        label: 'Notes',
-        placeholder: 'Enter part of the note to search for',
-        description: 'Search players by their profile notes contents.'
+        label: 'Noter',
+        placeholder: 'Angiv en del af noten du vil søge efter',
+        description: 'Søger efter spillere med hvad deres noter indeholder.'
     },
     {
         value: 'playerIds',
-        label: 'Player IDs',
-        placeholder: 'License, Discord, Steam, etc.',
-        description: 'Search players by their IDs separated by a comma.'
+        label: 'Spiller IDer',
+        placeholder: 'Licens, Discord, Steam, osv.',
+        description: 'Søg efter spillere med deres IDs, separeret med et komma.'
     },
 ] as const;
 
 export const availableFilters = [
-    { label: 'Is Admin', value: 'isAdmin' },
-    { label: 'Is Online', value: 'isOnline' },
+    { label: 'Er Admin', value: 'isAdmin' },
+    { label: 'Er Online', value: 'isOnline' },
     // { label: 'Is Banned', value: 'isBanned' },
     // { label: 'Has Previous Ban', value: 'hasPreviousBan' },
-    { label: 'Has Whitelisted ID', value: 'isWhitelisted' },
-    { label: 'Has Profile Notes', value: 'hasNote' },
+    { label: 'Har Whitelist', value: 'isWhitelisted' },
+    { label: 'Har Noter', value: 'hasNote' },
 ] as const;
 
 //FIXME: this doesn't require exporting, but HMR doesn't work without it
@@ -137,10 +137,10 @@ export function PlayerSearchBox({ doSearch, initialState }: PlayerSearchBoxProps
 
     //It's render time! 🎉
     const selectedSearchType = availableSearchTypes.find((type) => type.value === currSearchType);
-    if (!selectedSearchType) throw new Error(`Invalid search type: ${currSearchType}`);
+    if (!selectedSearchType) throw new Error(`Ugyldig søgningstype: ${currSearchType}`);
     const filterBtnMessage = selectedFilters.length
         ? `${selectedFilters.length} Filter${selectedFilters.length > 1 ? 's' : ''}`
-        : 'No filters';
+        : 'Intet filter';
     return (
         <div className="p-4 mb-2 md:mb-4 md:rounded-xl border border-border bg-card text-card-foreground shadow-sm">
             <div className="flex flex-wrap-reverse gap-2">
@@ -179,12 +179,12 @@ export function PlayerSearchBox({ doSearch, initialState }: PlayerSearchBoxProps
                                 onClick={() => setSearchTypeDropdownOpen(!isSearchTypeDropdownOpen)}
                                 className="xs:w-48 justify-between border-input bg-black/5 dark:bg-black/30 hover:dark:bg-primary grow md:grow-0"
                             >
-                                Search by {selectedSearchType.label}
+                                Søgning efter {selectedSearchType.label}
                                 <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className='w-48'>
-                            <DropdownMenuLabel>Search Type</DropdownMenuLabel>
+                            <DropdownMenuLabel>Søgnings type</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuRadioGroup value={currSearchType} onValueChange={setCurrSearchType}>
                                 {availableSearchTypes.map((searchType) => (
@@ -203,7 +203,7 @@ export function PlayerSearchBox({ doSearch, initialState }: PlayerSearchBoxProps
                                 className="cursor-pointer"
                                 onCheckedChange={setRememberSearchType}
                             >
-                                Remember Option
+                                Husk valgmulighed
                             </DropdownMenuCheckboxItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
@@ -222,7 +222,7 @@ export function PlayerSearchBox({ doSearch, initialState }: PlayerSearchBoxProps
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className='w-44'>
-                            <DropdownMenuLabel>Search Filters</DropdownMenuLabel>
+                            <DropdownMenuLabel>Søgnings filter</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             {availableFilters.map((filter) => (
                                 <DropdownMenuCheckboxItem
@@ -243,7 +243,7 @@ export function PlayerSearchBox({ doSearch, initialState }: PlayerSearchBoxProps
                                 onClick={() => setSelectedFilters([])}
                             >
                                 <FilterXIcon className="mr-2 h-4 w-4" />
-                                Clear Filters
+                                Ryd filtrér
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
@@ -252,7 +252,7 @@ export function PlayerSearchBox({ doSearch, initialState }: PlayerSearchBoxProps
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="outline" className="grow md:grow-0">
-                                    More
+                                    Mere
                                     <ChevronDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                 </Button>
                             </DropdownMenuTrigger>
@@ -260,13 +260,13 @@ export function PlayerSearchBox({ doSearch, initialState }: PlayerSearchBoxProps
                                 <DropdownMenuItem className="h-10 pl-1 pr-2 py-2" asChild>
                                     <Link href="/ban-identifiers" className="cursor-pointer">
                                         <ExternalLinkIcon className="inline mr-1 h-4" />
-                                        Ban Identifiers
+                                        Ban identifikatore
                                     </Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem className="h-10 pl-1 pr-2 py-2" asChild>
                                     <Link href="/system/master-actions#cleandb" className="cursor-pointer">
                                         <ExternalLinkIcon className="inline mr-1 h-4" />
-                                        Prune Players/HWIDs
+                                        Rens Spillere/HWID'er
                                     </Link>
                                 </DropdownMenuItem>
                             </DropdownMenuContent>

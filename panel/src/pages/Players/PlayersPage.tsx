@@ -123,23 +123,23 @@ export default function PlayersPage() {
         const hasCalloutData = calloutData && !('error' in calloutData);
         return [
             {
-                label: 'Total Players',
+                label: 'Samlet antal spillere',
                 value: hasCalloutData ? calloutData.total : false,
                 icon: <UsersIcon />,
             },
             {
-                label: 'Players Last 24h',
+                label: 'Spillere de sidste 24h',
                 value: hasCalloutData ? calloutData.playedLast24h : false,
                 icon: <CalendarPlusIcon />,
             },
             {
-                label: 'New Players Last 24h',
+                label: 'Nye spillere de sidste 24 timner',
                 value: hasCalloutData ? calloutData.joinedLast24h : false,
                 icon: <UserRoundPlusIcon />,
                 prefix: '+'
             },
             {
-                label: 'New Players Last 7d',
+                label: 'Nye spillere de sidste 7 dage',
                 value: hasCalloutData ? calloutData.joinedLast7d : false,
                 icon: <UserRoundPlusIcon />,
                 prefix: '+'
