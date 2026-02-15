@@ -138,7 +138,7 @@ export default function SystemLogPage({ pageName }: SystemLogPageProps) {
                     setIsLoading(false);
                     writeToTerminal(resp.data);
                     term.writeln('');
-                    term.writeln('\u001b[33m[END OF LOG - REFRESH THE PAGE TO LOAD MORE]\u001b');
+                    term.writeln('\u001b[33m[ENDE PÅ LOG - GENINDLÆS SIDEN FOR AT INDLÆSE MERE]\u001b');
                 },
                 error: (message, toastId) => {
                     setIsLoading(false);
@@ -186,11 +186,11 @@ export default function SystemLogPage({ pageName }: SystemLogPageProps) {
     }
 
     //Rendering stuff
-    let pageTitle = 'Console Log';
-    let pageSubtitle = 'Output of txAdmin to it\'s parent terminal, including usually hidden debug messages.';
+    let pageTitle = 'Konsol Log';
+    let pageSubtitle = 'Output fra txAdmin til den overordnet terminal, inklusive normalt skjulte fejlfindings beskeder.';
     if (pageName === 'action') {
-        pageTitle = 'Action Log';
-        pageSubtitle = 'Log of all actions taken by txAdmin or any admin.';
+        pageTitle = 'Handlings Log';
+        pageSubtitle = 'Log over alle handlinger foretaget af txAdmin eller enhver administrator.';
     }
 
     return (
@@ -223,7 +223,7 @@ export default function SystemLogPage({ pageName }: SystemLogPageProps) {
                         <div className='flex flex-col gap-6 items-center justify-center text-muted-foreground select-none'>
                             <Loader2Icon className='w-16 h-16 animate-spin' />
                             <h2 className='text-3xl tracking-wider font-light animate-pulse'>
-                                &nbsp;&nbsp;&nbsp;Loading...
+                                &nbsp;&nbsp;&nbsp;Indlæser...
                             </h2>
                         </div>
                     </div>
@@ -231,7 +231,7 @@ export default function SystemLogPage({ pageName }: SystemLogPageProps) {
                 {loadError && (
                     <div className='absolute inset-0 z-20 bg-black/60 flex flex-col gap-4 items-center justify-center'>
                         <h2 className='text-2xl tracking-wider font-light text-muted-foreground select-none'>
-                            Error fetching {pageTitle}:
+                            Fejl ved hentning af {pageTitle}:
                         </h2>
                         <p className='mx-8 max-w-screen-md text-destructive-inline font-mono'>
                             {loadError}
